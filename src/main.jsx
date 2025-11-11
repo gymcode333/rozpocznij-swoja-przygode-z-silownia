@@ -10,7 +10,7 @@ import React from 'react';
 
 // !!! NOWY IMPORT: Komponent strony szczegółów planu !!!
 
-
+import Fbw3DniowyPage from './pages/Plany/FBW-3-dniowy.jsx';
 
 // 1. Definiujemy element główny (root)
 const rootElement = document.getElementById('root');
@@ -27,7 +27,7 @@ ReactDOM.createRoot(rootElement).render(
                 <Route path="/plany" element={<PlansPage />} />
 
                 {/* !!! NOWA TRASA DLA PLANU FBW (Musisz tu użyć pełnej ścieżki) !!! */}
-                
+                <Route path="/plany/fbw-3-dniowy" element={<Fbw3DniowyPage />} />
 
                 {/* Ścieżka /blog */}
                 <Route path="/blog" element={<BlogPage />} />
