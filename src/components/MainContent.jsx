@@ -97,7 +97,7 @@ const MainContent = () => {
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
             
             {/* SEKCJA KROKÓW: JAK ZACZĄĆ */}
-            <section id="start" className="py-8 border-b border-gray-100 dark:border-gray-800">
+            <section id="start" className="py-6 border-b border-gray-100 dark:border-gray-800">
                 <h2 className="text-3xl font-extrabold font-heading text-gray-900 dark:text-white mb-4 flex items-center">
                     Jak zacząć trening siłowy? <Zap className="w-6 h-6 ml-3 text-primary-500" />
                 </h2>
@@ -118,7 +118,7 @@ const MainContent = () => {
             </section>
         
             {/* SEKCJA BŁĘDÓW */}
-            <section id="errors" className="py-8 border-b border-gray-100 dark:border-gray-800">
+            <section id="errors" className="py-6 border-b border-gray-100 dark:border-gray-800">
                 <h2 className="text-3xl font-extrabold font-heading text-gray-900 dark:text-white mb-4 flex items-center">
                     Najczęstsze błędy, jakie popełniają początkujący <AlertTriangle className="w-6 h-6 ml-3 text-secondary" />
                 </h2>
