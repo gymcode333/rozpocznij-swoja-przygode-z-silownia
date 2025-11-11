@@ -1,13 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css';
+//import ReactDOM from 'react-dom/client';
+//import { BrowserRouter, Routes, Route } from 'react-router-dom';
+//import './index.css';
 
 // Importy istniejących komponentów:
-import App from "./App.jsx";
-import PlansPage from './pages/PlansPage.jsx';
-import BlogPage from "./pages/BlogPage.jsx";
-
+//import App from "./App.jsx";
+//import PlansPage from './pages/PlansPage.jsx';
+//import BlogPage from "./pages/BlogPage.jsx";
+import Fbw3DniowyPage from './pages/Plany/FBW-3-dniowy.jsx';
 // !!! NOWY IMPORT: Komponent strony szczegółów planu !!!
 
 
@@ -27,7 +27,7 @@ ReactDOM.createRoot(rootElement).render(
                 <Route path="/plany" element={<PlansPage />} />
 
                 {/* !!! NOWA TRASA DLA PLANU FBW (Musisz tu użyć pełnej ścieżki) !!! */}
-               
+                <Route path="/plany/fbw-3-dniowy" element={<Fbw3DniowyPage />} />
 
                 {/* Ścieżka /blog */}
                 <Route path="/blog" element={<BlogPage />} />
