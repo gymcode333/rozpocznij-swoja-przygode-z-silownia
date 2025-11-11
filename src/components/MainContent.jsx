@@ -94,7 +94,7 @@ const MainContent = () => {
 
 
     return (
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
+        <div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
             
             {/* SEKCJA KROKÓW: JAK ZACZĄĆ */}
             <section id="start" className="py-6 border-b border-gray-100 dark:border-gray-800">
@@ -104,14 +104,14 @@ const MainContent = () => {
                 <p className="text-gray-600 dark:text-gray-400 mb-8">
                     Rozpoczęcie treningu siłowego jest jedną z najlepszych inwestycji w nasze zdrowie i sylwetkę. Kluczem jest świadome podejście do całego procesu.
                 </p>
-                <motion.section 
+                <div
                     className="grid w-full min-h-24 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                     variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
                 >
                     {stepData.map((step, index) => (
                         <StepCard key={index} {...step} index={index} />
                     ))}
-                </motion.section>
+                </div>
                 <p className="text-gray-600 dark:text-gray-400 mt-8">
                     Pamiętaj, że jeśli chcesz zbudować zdrowe i wysportowane ciało, musisz zachować regularność, jest to ważniejsze niż krótkotrwała, intensywna motywacja.
                 </p>
@@ -241,7 +241,7 @@ const MainContent = () => {
             <section id="faq" className="py-8">
                 <FAQ />
             </section>
-        </motion.div>
+        </div>
     );
 };
 
