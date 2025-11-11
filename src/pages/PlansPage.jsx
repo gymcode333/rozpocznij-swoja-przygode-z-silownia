@@ -9,6 +9,9 @@ import { Dumbbell, Users, DivideCircle, Check, BookOpen } from 'lucide-react';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer';
 export const MotionDiv = motion.div;
+<Link to="/plany/fbw-3-dniowy" className="mt-4 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+    Zobacz plan szczegółowo
+</Link>
 // Warianty animacji dla kart
 const cardVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -18,10 +21,6 @@ const cardVariants = {
         transition: { type: "spring", stiffness: 100, damping: 12, duration: 0.6 } 
     }
 };
-
-// ----------------------------------------------------------------------
-// Komponent Karta Planu (z poprawionym propem 'icon')
-// ----------------------------------------------------------------------
 
 const PlanCard = ({ title, tag, link, icon, description, features, delay }) => {
     // Stosujemy bezpieczny wzorzec: przypisanie propa 'icon' do zmiennej z dużej litery
