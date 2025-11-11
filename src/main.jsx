@@ -9,7 +9,7 @@ import PlansPage from './pages/PlansPage.jsx';
 import BlogPage from "./pages/BlogPage.jsx";
 
 // !!! NOWY IMPORT: Komponent strony szczegółów planu !!!
-import Fbw3DniowyPage from '../pages/plany/fbw-3-dniowy.jsx';
+import Fbw3DniowyPage from './pages/Plany/FBW-3-dniowy.jsx';
 
 
 // 1. Definiujemy element główny (root)
