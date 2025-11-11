@@ -1,0 +1,6 @@
+/* Plik: index.css / globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pamiętaj: ten plik powinien być minimalny i zawierać TYLKO powyższe dyrektywy. */
