@@ -42,7 +42,7 @@ function App() {
                     {/* Main Content - zajmuje więcej miejsca na desktop */}
                     <main className="flex-1 lg:order-2">
                         {/* Wprowadzono padding top/bottom i marginesy do głównej treści */}
-                        <div className="bg-white dark:bg-dark-card rounded-xl shadow-xl p-6 md:p-10 mb-10"> 
+                        <div className="bg-white dark:bg-dark-card rounded-xl shadow-xl p-4 md:p-8 mb-10"> 
                             <MainContent />
                         </div>
                     </main>
