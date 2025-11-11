@@ -102,7 +102,7 @@ const MainContent = () => {
                     Jak zacząć trening siłowy? <Zap className="w-6 h-6 ml-3 text-primary-500" />
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 mb-8">
-                    32Rozpoczęcie treningu siłowego jest jedną z najlepszych inwestycji w nasze zdrowie i sylwetkę. Kluczem jest świadome podejście do całego procesu.
+                    Rozpoczęcie treningu siłowego jest jedną z najlepszych inwestycji w nasze zdrowie i sylwetkę. Kluczem jest świadome podejście do całego procesu.
                 </p>
                 <motion.section 
                     className="grid w-full min-h-24 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"

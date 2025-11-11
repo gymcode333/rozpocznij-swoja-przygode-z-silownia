@@ -101,7 +101,7 @@ const Header = () => {
 
             {/* SEKCJA HERO - Duża, czysta, z animacją */}
             <motion.div 
-                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 text-center"
+                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 **py-12** md:py-24 **lg:py-32** text-center"
                 initial="hidden"
                 animate="visible"
                 variants={heroVariants}
