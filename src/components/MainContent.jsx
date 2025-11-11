@@ -105,7 +105,7 @@ const MainContent = () => {
                     Rozpoczęcie treningu siłowego jest jedną z najlepszych inwestycji w nasze zdrowie i sylwetkę. Kluczem jest świadome podejście do całego procesu.
                 </p>
                 <motion.section 
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                    className="grid w-full min-h-24 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                     variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
                 >
                     {stepData.map((step, index) => (
