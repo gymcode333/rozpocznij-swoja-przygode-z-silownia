@@ -211,10 +211,34 @@ const MainContent = () => {
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
                     Początek z treningiem siłowym nie musi być trudny. Odpowiednia dieta, plan treningowy oraz wytrwałość przyniosą Ci upragnione efekty.
                 </p>
-                <ul className="space-y-3 font-semibold text-gray-800 dark:text-gray-200">
-                    <li className="flex items-center"><CheckCircle className="w-5 h-5 mr-3 text-green-500" /> <strong>Plan treningowy:</strong> Przestań improwizować - trzymaj się planu.</li>
-                    <li className="flex items-center"><CheckCircle className="w-5 h-5 mr-3 text-green-500" /> <strong>Dieta:</strong> Jedzenie decyduje o 70% twoich wyników.</li>
-                    <li className="flex items-center"><CheckCircle className="w-5 h-5 mr-3 text-green-500" /> <strong>Regeneracja:</strong> Sen i odpoczynek to czas, w którym Twoje mięśnie rosną - nie olewaj tej części.</li>
+                <ul className="space-y-4 text-gray-800 dark:text-gray-200"> {/* Zwiększony space-y-4 */}
+        
+       
+                    <li className="flex items-start"> {/* items-start - wyrównuje do góry */}
+                        <CheckCircle className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500" /> 
+                        <div className="flex flex-col sm:flex-row"> {/* Konieczne jest użycie flex, aby utrzymać wyrównanie */}
+                            <strong className="font-semibold text-base whitespace-nowrap mr-1">Plan treningowy:</strong> {/* nowrap zapobiega zawijaniu tytułu */}
+                            <span className="text-gray-700 dark:text-gray-300 text-base">Przestań improwizować - trzymaj się planu.</span>
+                        </div>
+                    </li>
+
+        {/* Dieta */}
+                    <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500" />
+                        <div className="flex flex-col sm:flex-row">
+                            <strong className="font-semibold text-base whitespace-nowrap mr-1">Dieta:</strong>
+                            <span className="text-gray-700 dark:text-gray-300 text-base">Jedzenie decyduje o 70% twoich wyników.</span>
+                        </div>
+                    </li>
+
+        {/* Regeneracja */}
+                    <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500" />
+                        <div className="flex flex-col sm:flex-row">
+                            <strong className="font-semibold text-base whitespace-nowrap mr-1">Regeneracja:</strong>
+                            <span className="text-gray-700 dark:text-gray-300 text-base">Sen i odpoczynek to czas, w którym Twoje mięśnie rosną - nie olewaj tej części.</span>
+                        </div>
+                    </li>
                 </ul>
             </section>
 
