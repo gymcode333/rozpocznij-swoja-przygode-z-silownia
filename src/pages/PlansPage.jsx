@@ -1,4 +1,3 @@
-
 "use client";
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -9,9 +8,7 @@ import { Dumbbell, Users, DivideCircle, Check, BookOpen } from 'lucide-react';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer';
 export const MotionDiv = motion.div;
-<Link to="/plany/fbw-3-dniowy" className="mt-4 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
-    Zobacz plan szczegółowo
-</Link>
+
 // Warianty animacji dla kart
 const cardVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -80,7 +77,8 @@ const PlansPage = () => {
         {
             title: "FBW (Full Body Workout)",
             tag: "Dla początkujących",
-            link: "/fbw",
+            // Zmieniona ścieżka do szczegółowego planu
+            link: "/plany/fbw-3-dniowy", 
             icon: Dumbbell,
             description: "Plan, w którym ćwiczysz całe ciało na każdej sesji. Idealny, aby szybko nauczyć się techniki i zbudować solidne podstawy siły.",
             features: [
@@ -93,7 +91,7 @@ const PlansPage = () => {
         {
             title: "PPL (Push, Pull, Legs)",
             tag: "Dla średnio zaawansowanych",
-            link: "/ppl",
+            link: "/plany/ppl-4-dniowy", // Zmieniono na nową konwencję
             icon: Users,
             description: "Plan dzielony na trzy główne grupy ruchów. Świetny do zwiększenia częstotliwości treningowej i lepszego podziału pracy mięśniowej.",
             features: [
@@ -106,7 +104,7 @@ const PlansPage = () => {
         {
             title: "Split (Tradycyjny Podział)",
             tag: "Dla zaawansowanych",
-            link: "/split",
+            link: "/plany/split-5-dniowy", // Zmieniono na nową konwencję
             icon: DivideCircle,
             description: "Najczęściej używany schemat przez kulturystów. Każda sesja koncentruje się na jednej lub dwóch dużych grupach mięśniowych.",
             features: [
