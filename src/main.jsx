@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
+
+// Importy istniejących komponentów:
 import App from "./App.jsx";
 import PlansPage from './pages/PlansPage.jsx';
 import BlogPage from "./pages/BlogPage.jsx";
 
-// Dodaj import stylów, które są wspólne dla obu stron
+// !!! NOWY IMPORT: Komponent strony szczegółów planu !!!
+import Fbw3DniowyPage from './pages/plany/fbw-3-dniowy.jsx';
 
 
 // 1. Definiujemy element główny (root)
@@ -20,11 +23,18 @@ ReactDOM.createRoot(rootElement).render(
                 {/* Ścieżka główna / */}
                 <Route path="/" element={<App />} />
                 
-                {/* Ścieżka /plany */}
+                {/* Ścieżka /plany (Lista planów) */}
                 <Route path="/plany" element={<PlansPage />} />
+
+                {/* !!! NOWA TRASA DLA PLANU FBW (Musisz tu użyć pełnej ścieżki) !!! */}
+                <Route path="/plany/fbw-3-dniowy" element={<Fbw3DniowyPage />} />
 
                 {/* Ścieżka /blog */}
                 <Route path="/blog" element={<BlogPage />} />
+
+                {/* Możesz dodać trasę 404 jako ostatnią, aby obsłużyć nieznane adresy */}
+                {/* <Route path="*" element={<div>404 Not Found</div>} /> */}
+
             </Routes>
         </BrowserRouter>
     </React.StrictMode>,
