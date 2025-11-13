@@ -71,7 +71,7 @@ const PlanCard = ({ title, tag, link, icon, description, features, delay }) => {
 };
 
 
-const PlansPage = () => {
+const FBW = () => {
     
     const plansData = [
         {
@@ -161,4 +161,4 @@ const PlansPage = () => {
     );
 };
 
-export default PlansPage;
+export default FBW;

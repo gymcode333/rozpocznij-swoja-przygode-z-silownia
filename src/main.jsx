@@ -6,6 +6,7 @@ import './index.css';
 import App from "./App.jsx";
 import PlansPage from './pages/PlansPage.jsx';
 import BlogPage from "./pages/BlogPage.jsx";
+import FBW from './pages/FBW.jsx';
 
 
 
@@ -26,13 +27,12 @@ ReactDOM.createRoot(rootElement).render(
                 <Route path="/plany" element={<PlansPage />} />
 
                 {/* !!! NOWA TRASA DLA PLANU FBW (Musisz tu użyć pełnej ścieżki) !!! */}
-                
+                <Route path="/plany/fbw" element={<FBW />} />
 
                 {/* Ścieżka /blog */}
                 <Route path="/blog" element={<BlogPage />} />
 
-                {/* Możesz dodać trasę 404 jako ostatnią, aby obsłużyć nieznane adresy */}
-                {/* <Route path="*" element={<div>404 Not Found</div>} /> */}
+                
 
             </Routes>
         </BrowserRouter>
