@@ -91,7 +91,7 @@ const PlansPage = () => {
         {
             title: "PPL (Push, Pull, Legs)",
             tag: "Dla średnio zaawansowanych",
-            link: "/plany/ppl-4-dniowy", // Zmieniono na nową konwencję
+            link: "/plany/PPL", // Zmieniono na nową konwencję
             icon: Users,
             description: "Plan dzielony na trzy główne grupy ruchów. Świetny do zwiększenia częstotliwości treningowej i lepszego podziału pracy mięśniowej.",
             features: [
@@ -104,7 +104,7 @@ const PlansPage = () => {
         {
             title: "Split (Tradycyjny Podział)",
             tag: "Dla zaawansowanych",
-            link: "/plany/split-5-dniowy", // Zmieniono na nową konwencję
+            link: "/plany/SPLIT", // Zmieniono na nową konwencję
             icon: DivideCircle,
             description: "Najczęściej używany schemat przez kulturystów. Każda sesja koncentruje się na jednej lub dwóch dużych grupach mięśniowych.",
             features: [

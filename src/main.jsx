@@ -7,6 +7,8 @@ import App from "./App.jsx";
 import PlansPage from './pages/PlansPage.jsx';
 import BlogPage from "./pages/BlogPage.jsx";
 import FBW from './pages/FBW.jsx';
+import SPLIT from './pages/SPLIT.jsx';
+import PPL from './pages/PPL.jsx';
 
 
 
@@ -20,16 +22,17 @@ ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
-                {/* Ścieżka główna / */}
+                
                 <Route path="/" element={<App />} />
                 
-                {/* Ścieżka /plany (Lista planów) */}
                 <Route path="/plany" element={<PlansPage />} />
 
-                {/* !!! NOWA TRASA DLA PLANU FBW (Musisz tu użyć pełnej ścieżki) !!! */}
                 <Route path="/plany/fbw" element={<FBW />} />
+                
+                <Route path="/plany/ppl" element={<PPL />} />
+                
+                <Route path="/plany/split" element={<SPLIT />} />
 
-                {/* Ścieżka /blog */}
                 <Route path="/blog" element={<BlogPage />} />
 
                 
