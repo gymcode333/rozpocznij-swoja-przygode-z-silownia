@@ -3,4 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Pamiętaj: ten plik powinien być minimalny i zawierać TYLKO powyższe dyrektywy. */
+/* Pamiętaj: ten plik powinien być minimalny i zawierać TYLKO powyższe dyrektywy. *//* globals.css lub inny plik bazowy CSS */
+
+/* To dotyczy wszystkich elementów, do których odwołujemy się za pomocą kotwicy (#id) */

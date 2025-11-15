@@ -1,264 +1,236 @@
-"use client";
+// pages/plan-ppl.js - Z Kompaktowym Przełącznikiem Planów Wyrównanym do Prawej
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Dumbbell, Target, CheckCircle, TrendingUp, Zap, CalendarDays, AlertTriangle, Armchair, Hand, Footprints, Clock, Heart, Maximize2 } from 'lucide-react';
+
+// 1. ZAKŁADAMY, ŻE TE KOMPONENTY ISTNIEJĄ (Dostosuj ścieżki importu)
 import Header from '../components/Header'; 
-import Footer from '../components/Footer';
+import Footer from '../components/Footer'; 
 
+// Ikona, użyta w stylu FBW (kolor indigo)
+const HandIcon = () => (
+    <svg className="w-7 h-7 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.5v15m-4.5-4.5l4.5 4.5 4.5-4.5m-9-9l4.5-4.5 4.5 4.5"></path>
+    </svg>
+);
 
-const MotionDiv = motion.div;
-
-// Warianty animacji dla sekcji
-const sectionVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.99 },
-    visible: { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1,
-        transition: { duration: 0.7, ease: "easeOut" }
+// DANE: Plan Treningowy PPL (Push, Pull, Legs)
+const pplPlan = [
+    {
+        day: 'Dzień 1: PUSH (Pchanie)',
+        focus: 'Klatka, Barki, Triceps',
+        exercises: [
+            { name: 'Wyciskanie na ławce (sztanga)', sets: '4', reps: '6-8', notes: 'Główny ruch na klatkę.' },
+            { name: 'Wyciskanie hantli skos (góra)', sets: '3', reps: '8-10', notes: 'Akcent na górną część klatki.' },
+            { name: 'Wyciskanie żołnierskie (barki)', sets: '3', reps: '8-10', notes: 'Na masę i siłę barków.' },
+            { name: 'Unoszenie hantli bokiem', sets: '3', reps: '12-15', notes: 'Izolacja bocznego aktonu barków.' },
+            { name: 'Wyciskanie francuskie (triceps)', sets: '3', reps: '10-12', notes: 'Ćwiczenie na masę tricepsa.' },
+            { name: 'Prostowanie ramion na wyciągu', sets: '2', reps: '15-20', notes: 'Dopompowanie tricepsa.' },
+        ],
     },
-};
-
-// --- DANE DLA PLANU PPL (6 DNI) ---
-const pplSchedule = [
-    { day: 'Poniedziałek', training: 'PUSH', isTraining: true, icon: Hand, color: 'bg-primary-600', hoverColor: 'hover:bg-primary-700' },
-    { day: 'Wtorek', training: 'PULL', isTraining: true, icon: Armchair, color: 'bg-primary-600', hoverColor: 'hover:bg-primary-700' },
-    { day: 'Środa', training: 'LEGS', isTraining: true, icon: Footprints, color: 'bg-primary-600', hoverColor: 'hover:bg-primary-700' },
-    { day: 'Czwartek', training: 'REGENERACJA', isTraining: false, icon: Clock, color: 'bg-gray-200', hoverColor: 'hover:bg-gray-300' },
-    { day: 'Piątek', training: 'PUSH', isTraining: true, icon: Hand, color: 'bg-primary-600', hoverColor: 'hover:bg-primary-700' },
-    { day: 'Sobota', training: 'PULL', isTraining: true, icon: Armchair, color: 'bg-primary-600', hoverColor: 'hover:bg-primary-700' },
-    { day: 'Niedziela', training: 'LEGS', isTraining: true, icon: Footprints, color: 'bg-primary-600', hoverColor: 'hover:bg-primary-700' },
+    {
+        day: 'Dzień 2: PULL (Ciągnięcie)',
+        focus: 'Plecy, Biceps, Tylny Akton Barków',
+        exercises: [
+            { name: 'Martwy Ciąg', sets: '3', reps: '5-7', notes: 'Ruch podstawowy, budowanie siły.' },
+            { name: 'Podciąganie / Ściąganie drążka', sets: '4', reps: '6-10', notes: 'Na szerokość pleców.' },
+            { name: 'Wiosłowanie hantlami/sztangą', sets: '3', reps: '8-10', notes: 'Na grubość i gęstość pleców.' },
+            { name: 'Uginanie ramion ze sztangą', sets: '3', reps: '8-10', notes: 'Główne ćwiczenie na biceps.' },
+            { name: 'Face Pulls (przyciąganie liny)', sets: '3', reps: '15-20', notes: 'Na tylny akton barków i zdrowie stawów.' },
+            { name: 'Uginanie nadgarstków', sets: '2', reps: '20+', notes: 'Wzmocnienie przedramion.' },
+        ],
+    },
+    {
+        day: 'Dzień 3: LEGS (Nogi)',
+        focus: 'Uda, Pośladki, Łydki, Core',
+        exercises: [
+            { name: 'Przysiady ze sztangą', sets: '4', reps: '6-8', notes: 'Fundamentalne dla budowy nóg.' },
+            { name: 'Wypychanie na suwnicy (Leg Press)', sets: '3', reps: '10-12', notes: 'Dla wysokiej objętości i hipertrofii.' },
+            { name: 'Wykroki z hantlami/sztangą', sets: '3', reps: '10-12 na nogę', notes: 'Akcent na pośladki i stabilność.' },
+            { name: 'Uginanie nóg leżąc/siedząc', sets: '3', reps: '12-15', notes: 'Izolacja dwugłowych uda.' },
+            { name: 'Wspięcia na palce stojąc', sets: '4', reps: '15-20', notes: 'Na łydki. Pełne rozciągnięcie.' },
+            { name: 'Plank/Unoszenie nóg w zwisie', sets: '3', reps: '60s/15', notes: 'Ćwiczenia na stabilny korpus.' },
+        ],
+    },
+    {
+        day: 'Dzień 4: PUSH (Pchanie II)',
+        focus: 'Objętościowy trening na hipertrofię',
+        exercises: [
+            { name: 'Pompki na poręczach (Dipsy)', sets: '3', reps: '8-10', notes: 'Alternatywa dla wyciskania, akcent na dolną klatkę.' },
+            { name: 'Wyciskanie hantli siedząc (barki)', sets: '3', reps: '10-12', notes: 'Kontrolowany ruch, dla lepszej koncentracji.' },
+            { name: 'Rozpiętki na maszynie Pec Deck', sets: '3', reps: '12-15', notes: 'Maksymalne dopompowanie klatki.' },
+            { name: 'Unoszenie hantli w opadzie tułowia', sets: '3', reps: '15-20', notes: 'Na tylne aktony. Wyższa objętość.' },
+            { name: 'Prostowanie ramion linkami (overhand)', sets: '3', reps: '12-15', notes: 'Izolacja bocznej głowy tricepsa.' },
+        ],
+    },
+    {
+        day: 'Dzień 5: PULL (Ciągnięcie II)',
+        focus: 'Wysoka objętość, akcent na szerokość pleców',
+        exercises: [
+            { name: 'Wiosłowanie T-Bar/w podporze', sets: '3', reps: '8-10', notes: 'Dla grubości pleców.' },
+            { name: 'Ściąganie drążka (chwyt neutralny)', sets: '4', reps: '10-12', notes: 'Na szerokość, mocne spięcie na dole.' },
+            { name: 'Szrugsy ze sztangą/hantlami', sets: '3', reps: '15-20', notes: 'Na mięśnie kapturowe (trapezy).' },
+            { name: 'Uginanie młotkowe (hantle)', sets: '3', reps: '10-12', notes: 'Budowanie szczytu bicepsa i przedramienia.' },
+            { name: 'Uginanie na modlitewniku', sets: '3', reps: '10-12', notes: 'Maksymalna izolacja bicepsa.' },
+        ],
+    },
+    {
+        day: 'Dzień 6: LEGS (Nogi II)',
+        focus: 'Akcent na tylną taśmę i pośladki',
+        exercises: [
+            { name: 'Martwy Ciąg Rumuński', sets: '4', reps: '8-10', notes: 'Idealne dla pośladków i dwugłowych. Duże rozciągnięcie.' },
+            { name: 'Hack Przysiady/Prostowanie nóg', sets: '3', reps: '10-15', notes: 'Izolacja mięśni czworogłowych.' },
+            { name: 'Hip Thrusts (unoszenie bioder)', sets: '3', reps: '10-12', notes: 'Najlepsze ćwiczenie na siłę pośladków.' },
+            { name: 'Odwodzenie nóg na maszynie/linkach', sets: '3', reps: '15-20', notes: 'Kształtowanie pośladków (boczna część).' },
+            { name: 'Wspięcia na palce siedząc', sets: '3', reps: '20+', notes: 'Na mniejszy mięsień płaszczkowaty.' },
+        ],
+    },
 ];
 
-const pushWorkout = [
-    { ćwiczenie: 'Wyciskanie sztangi na ławce płaskiej', target: 'Klatka', serie: '3', powtórzenia: '6-8' },
-    { ćwiczenie: 'Wyciskanie hantli na skosie dodatnim', target: 'Klatka', serie: '3', powtórzenia: '8-10' },
-    { ćwiczenie: 'Wyciskanie hantli siedząc (Barki)', target: 'Barki', serie: '3', powtórzenia: '8-10' },
-    { ćwiczenie: 'Unoszenie hantli bokiem', target: 'Barki boczne', serie: '3', powtórzenia: '12-15' },
-    { ćwiczenie: 'Wyprosty ramion na wyciągu (Triceps)', target: 'Triceps', serie: '3', powtórzenia: '10-12' },
-];
+// Komponent wyświetlający pojedyncze ćwiczenie
+const ExerciseRow = ({ exercise }) => (
+    <div className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0">
+        <div className="flex-1 min-w-0 pr-4">
+            <p className="text-gray-900 font-semibold">{exercise.name}</p>
+            <p className="text-sm text-gray-500 mt-1 italic">{exercise.notes}</p>
+        </div>
+        <div className="text-right flex-shrink-0">
+            <p className="text-sm text-gray-700 font-medium">{exercise.sets} serie</p>
+            <p className="text-xs text-indigo-600 font-bold">{exercise.reps} powtórzeń</p>
+        </div>
+    </div>
+);
 
-const pullWorkout = [
-    { ćwiczenie: 'Martwy ciąg (Rumunski)', target: 'Plecy/Dwugłowe', serie: '3', powtórzenia: '8-10' },
-    { ćwiczenie: 'Podciąganie na drążku (lub ściąganie wyciągu szerokim chwytem)', target: 'Plecy (szerokość)', serie: '3', powtórzenia: '8-12' },
-    { ćwiczenie: 'Wiosłowanie sztangą w opadzie tułowia', target: 'Plecy (grubość)', serie: '3', powtórzenia: '8-10' },
-    { ćwiczenie: 'Face Pull', target: 'Barki tył', serie: '3', powtórzenia: '15-20' },
-    { ćwiczenie: 'Uginanie ramion ze sztangą (Biceps)', target: 'Biceps', serie: '3', powtórzenia: '10-12' },
-];
-
-const legsWorkout = [
-    { ćwiczenie: 'Przysiady ze sztangą na plecach', target: 'Czworogłowe', serie: '3', powtórzenia: '6-8' },
-    { ćwiczenie: 'Hack Squat / Wypychanie na suwnicy', target: 'Czworogłowe/Pośladki', serie: '3', powtórzenia: '10-12' },
-    { ćwiczenie: 'Uginanie nóg leżąc (Dwugłowe)', target: 'Dwugłowe', serie: '3', powtórzenia: '10-12' },
-    { ćwiczenie: 'Wykroki z hantlami', target: 'Czworogłowe/Pośladki', serie: '3', powtórzenia: '10 na nogę' },
-    { ćwiczenie: 'Spięcia brzucha z obciążeniem', target: 'Brzuch', serie: '3', powtórzenia: '15-20' },
-];
-
-
-// Komponent do renderowania tabeli ćwiczeń dla PPL
-const PPLWorkoutTable = ({ data, title, icon: Icon }) => {
-    // Używamy koloru primary dla ikon i nagłówków
-    const accentColor = 'primary-600';
-    
+// Komponent dla pojedynczego Dnia Treningowego
+const TrainingDayCard = ({ plan }) => {
     return (
-        <div className="mb-10 p-6 border border-gray-100 rounded-3xl bg-white shadow-xl transition duration-500 transform hover:scale-[1.01] hover:shadow-2xl">
-            <h3 className={`text-2xl font-extrabold font-heading mb-6 flex items-center text-gray-900`}>
-                <Icon className={`w-7 h-7 mr-3 text-${accentColor} flex-shrink-0 drop-shadow-md`} />
-                {title}
-            </h3>
-            <div className="overflow-x-auto rounded-xl border border-gray-200">
-                <table className="min-w-full border-collapse">
-                    <thead>
-                        {/* Jasny, stonowany nagłówek tabeli */}
-                        <tr className={`bg-gray-100 text-gray-700`}>
-                            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Ćwiczenie</th>
-                            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Celowany Mięsień</th>
-                            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Serie</th>
-                            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Powtórzenia</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                        {data.map((item, index) => (
-                            <motion.tr 
-                                key={index} 
-                                className="hover:bg-gray-50 transition duration-200"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.05 }}
-                            >
-                                <td className="px-4 py-3 whitespace-normal text-sm font-medium text-gray-900">{item.ćwiczenie}</td>
-                                <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">{item.target}</td>
-                                <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">{item.serie}</td>
-                                <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">{item.powtórzenia}</td>
-                            </motion.tr>
-                        ))}
-                    </tbody>
-                </table>
+        <div className="bg-white rounded-xl shadow-2xl overflow-hidden h-full flex flex-col transition duration-300 hover:shadow-indigo-300/50">
+            
+            {/* Nagłówek Dnia (Ujednolicony styl indigo) */}
+            <div className={`p-6 bg-indigo-50 border-b-4 border-indigo-600 flex items-center`}>
+                <HandIcon />
+                <div>
+                    <h3 className="text-xl font-bold text-gray-900">{plan.day}</h3>
+                    <p className="text-sm text-gray-600 mt-1">{plan.focus}</p>
+                </div>
+            </div>
+
+            {/* Lista Ćwiczeń */}
+            <div className="p-6 space-y-2 flex-1">
+                {plan.exercises.map((exercise, index) => (
+                    <ExerciseRow key={index} exercise={exercise} />
+                ))}
             </div>
         </div>
     );
 };
 
-// Komponent do renderowania Harmonogramu jako kart
-const ScheduleCard = ({ day, training, icon: Icon, color, hoverColor, isTraining }) => (
-    <MotionDiv 
-        className={`p-6 rounded-2xl shadow-xl transition-all duration-300 transform ${color} ${hoverColor} hover:-translate-y-1 h-full flex flex-col justify-between border border-gray-200`}
-        whileHover={{ scale: isTraining ? 1.02 : 1.0 }}
-    >
-        <div className="flex items-center space-x-3 mb-2">
-            {/* Ikony w białym kolorze na tle primary/szarym */}
-            <Icon className={`w-8 h-8 ${isTraining ? 'text-white' : 'text-gray-700'} drop-shadow-sm opacity-90`} />
-            <h4 className={`text-lg font-extrabold ${isTraining ? 'text-white' : 'text-gray-800'}`}>{day}</h4>
-        </div>
-        <p className={`text-xl font-bold mb-1 ${isTraining ? 'text-white' : 'text-gray-900'}`}>
-            {training}
-        </p>
-        <p className={`text-xs ${isTraining ? 'text-white/90' : 'text-gray-600'}`}>
-            {isTraining ? 'Wysoka intensywność i objętość.' : 'Pełna regeneracja kluczem do postępów.'}
-        </p>
-    </MotionDiv>
-);
 
+// KOMPAKTOWY PRZEŁĄCZNIK PLANÓW (Wyrównanie do Prawej)
+const QuickPlanSwitcher = ({ currentPlan }) => {
+    const plans = [
+        { name: 'FBW', currentName: 'FBW', href: './FBW', label: 'Plan FBW' },
+        { name: 'SPLIT', currentName: 'SPLIT', href: './SPLIT', label: 'Plan SPLIT' },
+        { name: 'PPL', currentName: 'PPL', href: './PPL', label: 'Przejdź do Planu PPL' },
+    ];
+    
+    // Filtr: usuwa link do aktualnej strony (PPL)
+    const otherPlans = plans.filter(plan => plan.currentName !== currentPlan);
 
-// Główny komponent strony
-const App = () => {
+    if (otherPlans.length === 0) return null;
+
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 font-inter text-gray-900">
-            <Header /> {/* Komponent Header (Twoja wersja) */}
+        // Wyrównanie do prawej na desktopie (sm:justify-end)
+        <div className="w-full bg-white p-4 rounded-xl shadow-lg flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4 mb-12">
             
-            <main className="flex-grow">
-                <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-                    
-                    {/* BANNER GŁÓWNY */}
-                    <motion.header 
-                        className="text-center mb-16 p-12 rounded-3xl shadow-xl bg-gradient-to-br from-white to-gray-100 border-b-4 border-primary-600/50"
-                        initial={{ opacity: 0, y: -50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.0 }}
+            {/* Profesjonalny tekst/CTA */}
+            <p className="text-base text-indigo-700 font-bold flex-grow text-center sm:text-left uppercase tracking-wider">
+                <span className="hidden sm:inline">➡️</span> Zobacz Alternatywne Schematy Treningowe
+            </p>
+
+            {/* Kontener dla przycisków (wyrównany do prawej na desktopie) */}
+            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+                {otherPlans.map(plan => (
+                    <a
+                        key={plan.name}
+                        href={plan.href}
+                        className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-500 hover:bg-indigo-600 transition duration-150"
                     >
-                        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black font-heading text-gray-900 mb-4 leading-tight tracking-tight">
-                            PLAN TRENINGOWY PPL
-                        </h1>
-                        <p className="text-2xl sm:text-3xl text-primary-600 font-extrabold mb-5">
-                            PUSH, PULL, LEGS: MAX Hipertrofia
-                        </p>
-                        <Zap className="w-12 h-12 text-primary-600 mx-auto mt-4 animate-pulse drop-shadow-lg" />
-                    </motion.header>
-
-                    {/* SEKCJA 1: CZYM JEST PPL I DLA KOGO */}
-                    <MotionDiv 
-                        className="mb-16 p-8 bg-white rounded-3xl shadow-2xl border border-gray-100"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-primary-600 mb-6 flex items-center border-b pb-3 border-gray-200">
-                            <Maximize2 className="w-7 h-7 mr-3 flex-shrink-0" />
-                            Definicja i Kluczowe Korzyści PPL
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div className="col-span-1 md:col-span-2 text-lg text-gray-700 space-y-4">
-                                <p>
-                                    PPL (Push, Pull, Legs) to **funkcjonalny** podział treningowy, który grupuje mięśnie ze względu na ich **działanie (pchanie, ciągnięcie, nogi)**. Jest uznawany za jeden z najbardziej efektywnych schematów dla osób średniozaawansowanych i zaawansowanych, dążących do **maksymalnej hipertrofii**.
-                                </p>
-                                <p className="font-semibold text-gray-900 border-l-4 border-primary-600 pl-4 py-1 bg-primary-50 transition duration-300 hover:shadow-md">
-                                    **Kluczowa zasada:** Trenujesz każdą dużą partię mięśniową **dwa razy w tygodniu**, co jest optymalne dla szybkiego wzrostu siły i masy.
-                                </p>
-                            </div>
-                            <div className="col-span-1">
-                                <ul className="space-y-4 p-5 bg-gray-100 rounded-xl shadow-inner border border-gray-200">
-                                    <li className="flex items-start text-primary-600 font-bold"><CheckCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-green-500" /> Częstotliwość 2x/tydzień</li>
-                                    <li className="flex items-start text-gray-700"><CheckCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-green-500" /> Idealny na 6 dni treningowych</li>
-                                    <li className="flex items-start text-gray-700"><CheckCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-green-500" /> Lepsze zarządzanie regeneracją</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </MotionDiv>
-
-                    {/* SEKCJA 2: HARMONOGRAM (KARTY) */}
-                    <MotionDiv 
-                        className="mb-16 p-8 bg-gray-100 rounded-3xl shadow-2xl border border-gray-200"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.1 }}
-                        variants={{ visible: { opacity: 1, transition: { staggerChildren: 0.15 } } }}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-gray-900 mb-8 text-center flex items-center justify-center">
-                            <CalendarDays className="w-7 h-7 mr-3 text-primary-600" />
-                            Profesjonalny Harmonogram PPL (6-Dniowy)
-                        </h2>
-                        
-                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-                            {pplSchedule.map((item, index) => (
-                                <motion.div key={index} variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1 } }}>
-                                    <ScheduleCard {...item} />
-                                </motion.div>
-                            ))}
-                        </div>
-                    </MotionDiv>
-
-                    {/* SEKCJA 3: PLAN TRENINGOWY (GRID) */}
-                    <h2 className="text-4xl font-extrabold font-heading text-gray-900 mb-10 text-center">
-                        <Dumbbell className="w-9 h-9 mr-3 inline text-primary-600" />
-                        Szczegółowy Podział Ćwiczeń
-                    </h2>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-                        <MotionDiv initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={sectionVariants}>
-                            <PPLWorkoutTable data={pushWorkout} title="PUSH DAY (Pchanie)" icon={Hand} />
-                        </MotionDiv>
-                        
-                        <MotionDiv initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={sectionVariants}>
-                            <PPLWorkoutTable data={pullWorkout} title="PULL DAY (Ciągnięcie)" icon={Armchair} />
-                        </MotionDiv>
-
-                        <MotionDiv initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={sectionVariants}>
-                            <PPLWorkoutTable data={legsWorkout} title="LEGS DAY (Nogi)" icon={Footprints} />
-                        </MotionDiv>
-                    </div>
-
-                    {/* SEKCJA 4: ZASADY ZAŻYŁE */}
-                    <MotionDiv 
-                        className="p-8 bg-white rounded-3xl shadow-2xl border-l-8 border-primary-600"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-primary-600 mb-6 flex items-center">
-                            <Heart className="w-7 h-7 mr-3 flex-shrink-0" />
-                            Zasady Progresji i Regeneracji (Must-Have)
-                        </h2>
-                        <ul className="space-y-4 text-gray-700">
-                            <li className="flex items-start p-2 rounded-lg hover:bg-gray-50 transition duration-200 border-b border-gray-100">
-                                <TrendingUp className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500" />
-                                <p>
-                                    <strong>Podwójna Progresja Obciążenia:</strong> W pierwszym cyklu (Pon, Wt, Śr) skup się na mniejszym ciężarze i technice (10-15 powt.). W drugim cyklu (Pt, Sob, Ndz) zwiększ obciążenie, pracując w zakresie siłowym (6-10 powt.). To zapewnia stały bodziec do wzrostu.
-                                </p>
-                            </li>
-                            <li className="flex items-start p-2 rounded-lg hover:bg-gray-50 transition duration-200 border-b border-gray-100">
-                                <Clock className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500" />
-                                <p>
-                                    <strong>Zarządzanie Czasem:</strong> Długość treningu PPL to zwykle 60–75 minut. Jeśli trwa dłużej, zredukuj akcesoria. Skróć przerwy do 60-90 sekund dla izolacji, 120-180 sekund dla ćwiczeń złożonych.
-                                </p>
-                            </li>
-                            <li className="flex items-start p-3 rounded-lg bg-red-100 border border-red-500 transition duration-200">
-                                <AlertTriangle className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-red-500" />
-                                <p className="font-semibold text-red-700">
-                                    <strong>Priorytet Regeneracji:</strong> 6 sesji w tygodniu wymaga **rygorystycznej** diety (białko!) i **minimum 7-8 godzin snu**. Bez tego plan ten jest nieefektywny i prowadzi do przetrenowania.
-                                </p>
-                            </li>
-                        </ul>
-                    </MotionDiv>
-                </div>
-            </main>
-
-            <Footer /> {/* Komponent Footer (Twoja wersja) */}
+                        {plan.label}
+                    </a>
+                ))}
+            </div>
         </div>
     );
 };
 
-export default App;
+
+// GŁÓWNY KOMPONENT TREŚCI
+const PplContent = () => {
+    return (
+        <section className="bg-gray-100 py-16 sm:py-24" id="plan-ppl">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                {/* Nagłówek Sekcji */}
+                <div className="text-center mb-12">
+                    <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
+                        Plan dla Efektywnej Hipertrofii
+                    </h2>
+                    <p className="mt-2 text-4xl font-extrabold text-gray-900 sm:text-5xl">
+                        Plan Treningowy PPL (Push-Pull-Legs)
+                    </p>
+                    <p className="mt-4 text-xl text-gray-600 max-w-4xl mx-auto">
+                        PPL to podział treningowy, który umożliwia trenowanie każdej partii mięśniowej dwa razy w tygodniu, co jest optymalne dla maksymalnego wzrostu masy mięśniowej.
+                    </p>
+                </div>
+
+                {/* Wstawianie Kompaktowego Przełącznika - Wyrównany do Prawej */}
+                <QuickPlanSwitcher currentPlan={'PPL'} />
+
+                {/* Kontener Dni Treningowych (GRID) */}
+                <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                    {pplPlan.map((plan, index) => (
+                        <TrainingDayCard key={index} plan={plan} />
+                    ))}
+                </div>
+
+                {/* Wskazówki Treningowe */}
+                <div className="mt-16 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-600">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Schemat i Cykliczność PPL</h3>
+                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                        <li>**Zalecany Schemat:** PUSH (1), PULL (2), LEGS (3), WOLNE, PUSH (4), PULL (5), LEGS (6), WOLNE.</li>
+                        <li>**Cel:** Trenowanie partii dwa razy w tygodniu z zachowaniem pełnej regeneracji.</li>
+                        <li>**Intensywność:** Skup się na ciężarze w pierwszych ćwiczeniach (3-4 serie) i na objętości w ćwiczeniach akcesoryjnych (izolacyjnych).</li>
+                    </ul>
+                </div>
+
+                {/* CTA - Lead Magnet (ostatnia sekcja przed Footerem) */}
+                <div className="text-center mt-12">
+                    <p className="text-xl text-gray-800 font-semibold mb-4">
+                        Pobierz gotowy 8-tygodniowy plan PPL z progresją!
+                    </p>
+                    <a
+                        href="/pobierz-ebook-ppl"
+                        className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg shadow-xl text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105"
+                    >
+                        Pobierz DARMOWY Plan Hipertrofii PPL
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+// GŁÓWNY KOMPONENT STRONY
+const PplPage = () => {
+    return (
+        <div className="flex flex-col min-h-screen">
+            <Header /> 
+            <main className="flex-grow">
+                <PplContent />
+            </main>
+            <Footer />
+        </div>
+    );
+};
+
+export default PplPage;

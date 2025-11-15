@@ -1,278 +1,211 @@
-"use client";
+// pages/plan-split.js - Z Kompaktowym Przełącznikiem Planów Wyrównanym do Prawej
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Dumbbell, CalendarCheck, TrendingUp, AlertTriangle, CheckCircle, Target, Zap, Clock, Maximize2, Sun } from 'lucide-react';
+
+// 1. ZAKŁADAMY, ŻE TE KOMPONENTY ISTNIEJĄ (Dostosuj ścieżki importu)
 import Header from '../components/Header'; 
-import Footer from '../components/Footer';
+import Footer from '../components/Footer'; 
 
+// Ikona, użyta w stylu FBW (kolor indigo)
+const MuscleIcon = () => (
+    <svg className="w-7 h-7 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+    </svg>
+);
 
-const MotionDiv = motion.div;
-
-// Warianty animacji dla sekcji
-const sectionVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.99 },
-    visible: { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1,
-        transition: { duration: 0.7, ease: "easeOut" }
-    },
-};
-
-// --- DANE DLA PLANU SPLIT (4 DNI) ---
-const splitSchedule = [
-    { day: 'Poniedziałek', training: 'Klatka piersiowa + Biceps', isTraining: true },
-    { day: 'Wtorek', training: 'Nogi (Quady i Pośladki)', isTraining: true },
-    { day: 'Środa', training: 'ODPOCZYNEK', isTraining: false },
-    { day: 'Czwartek', training: 'Barki + Triceps', isTraining: true },
-    { day: 'Piątek', training: 'Plecy + Tylne Akcesoria Nóg', isTraining: true },
-    { day: 'Weekend', training: 'ODPOCZYNEK', isTraining: false },
-];
-
-// Przykładowe ćwiczenia dla planu 4-dniowego
-const workoutSections = [
+// DANE: Plan Treningowy SPLIT 4-dniowy
+const splitPlan = [
     {
-        title: 'Dzień 1: Klatka Piersiowa + Biceps',
-        data: [
-            { ćwiczenie: 'Wyciskanie sztangi na ławce płaskiej', target: 'Klatka', serie: '3', powtórzenia: '8-10' },
-            { ćwiczenie: 'Wyciskanie hantli na skosie dodatnim', target: 'Klatka', serie: '3', powtórzenia: '10-12' },
-            { ćwiczenie: 'Rozpiętki na bramie/maszynie', target: 'Klatka', serie: '3', powtórzenia: '12-15' },
-            { ćwiczenie: 'Uginanie ramion ze sztangą (Biceps)', target: 'Biceps', serie: '3', powtórzenia: '10-12' },
-            { ćwiczenie: 'Uginanie ramion z hantlami na modlitewniku', target: 'Biceps', serie: '2', powtórzenia: '12-15' },
-        ]
+        day: 'Dzień 1: Klatka Piersiowa & Triceps',
+        focus: 'Siłowe ćwiczenia złożone na klatkę, akcesoria na triceps.',
+        exercises: [
+            { name: 'Wyciskanie sztangi na ławce płaskiej', sets: '4', reps: '6-8', notes: 'Główne ćwiczenie siłowe. Progresja ciężaru.' },
+            { name: 'Wyciskanie hantli skos w górę (30°)', sets: '3', reps: '8-10', notes: 'Akcent na górną część klatki.' },
+            { name: 'Rozpiętki z linkami wyciągu górnego', sets: '3', reps: '12-15', notes: 'Maksymalne rozciągnięcie i spięcie.' },
+            { name: 'Wyciskanie francuskie sztangi leżąc', sets: '3', reps: '8-10', notes: 'Ćwiczenie na masę tricepsa.' },
+            { name: 'Prostowanie ramion na wyciągu (linki)', sets: '3', reps: '12-15', notes: 'Izolacja i dopompowanie tricepsa.' },
+        ],
     },
     {
-        title: 'Dzień 2: Nogi (Quady i Pośladki)',
-        data: [
-            { ćwiczenie: 'Przysiady ze sztangą na plecach', target: 'Czworogłowe/Pośladki', serie: '3', powtórzenia: '8-10' },
-            { ćwiczenie: 'Wypychanie na suwnicy (Leg Press)', target: 'Czworogłowe', serie: '3', powtórzenia: '10-12' },
-            { ćwiczenie: 'Wyprosty nóg na maszynie (Quady)', target: 'Czworogłowe', serie: '3', powtórzenia: '12-15' },
-            { ćwiczenie: 'Wykroki z hantlami', target: 'Pośladki/Quady', serie: '3', powtórzenia: '10-12 na nogę' },
-            { ćwiczenie: 'Odwodzenie nogi na maszynie (Pośladki)', target: 'Pośladki', serie: '3', powtórzenia: '15-20' },
-        ]
+        day: 'Dzień 2: Plecy & Biceps',
+        focus: 'Ćwiczenia na szerokość i grubość pleców, mocne ramiona.',
+        exercises: [
+            { name: 'Martwy Ciąg (klasyczny/sumo)', sets: '4', reps: '5-7', notes: 'Fundamentalne dla budowania siły i gęstości pleców.' },
+            { name: 'Podciąganie na drążku (nachwyt szeroki)', sets: '4', reps: 'Max', notes: 'Skup się na szerokości. Można użyć gumy.' },
+            { name: 'Wiosłowanie sztangą w opadzie tułowia', sets: '3', reps: '8-10', notes: 'Dla grubości pleców. Kontrolowany ruch.' },
+            { name: 'Uginanie ramion ze sztangą łamaną', sets: '3', reps: '8-10', notes: 'Główne ćwiczenie na biceps. Pełny zakres.' },
+            { name: 'Uginanie młotkowe hantlami', sets: '3', reps: '10-12', notes: 'Akcent na przedramiona i długą głowę bicepsa.' },
+        ],
     },
     {
-        title: 'Dzień 3: Barki + Triceps',
-        data: [
-            { ćwiczenie: 'Wyciskanie hantli siedząc (Barki)', target: 'Barki przód/bok', serie: '3', powtórzenia: '8-10' },
-            { ćwiczenie: 'Unoszenie hantli bokiem (Barki boczne)', target: 'Barki bok', serie: '3', powtórzenia: '12-15' },
-            { ćwiczenie: 'Unoszenie hantli w opadzie tułowia (Barki tył)', target: 'Barki tył', serie: '3', powtórzenia: '12-15' },
-            { ćwiczenie: 'Prostowanie ramion na wyciągu górnym (Triceps)', target: 'Triceps', serie: '3', powtórzenia: '10-12' },
-            { ćwiczenie: 'Pompki na poręczach (dla tricepsa)', target: 'Triceps', serie: '3', powtórzenia: 'Max' },
-        ]
+        day: 'Dzień 3: Barki & Brzuch',
+        focus: 'Kompleksowe kształtowanie barków i stabilny korpus.',
+        exercises: [
+            { name: 'Wyciskanie żołnierskie (sztanga/hantle)', sets: '4', reps: '8-10', notes: 'Ćwiczenie na masę barków. Stabilny tułów.' },
+            { name: 'Unoszenie hantli bokiem (stojąc)', sets: '3', reps: '12-15', notes: 'Izolacja bocznego aktonu. Prowadź łokcie.' },
+            { name: 'Odwrotne rozpiętki (maszyna/hantle)', sets: '3', reps: '15-20', notes: 'Na tylny akton barków. Dla zdrowych stawów.' },
+            { name: 'Unoszenie nóg w zwisie na drążku', sets: '3', reps: '15-20', notes: 'Mocne spięcie brzucha, nie bujaj ciałem.' },
+            { name: 'Allahy/Spięcia na wyciągu', sets: '3', reps: '15-20', notes: 'Izolacja prostych mięśni brzucha.' },
+        ],
     },
     {
-        title: 'Dzień 4: Plecy + Tył Nóg/Brzuch',
-        data: [
-            { ćwiczenie: 'Martwy Ciąg (klasyczny lub rumuński)', target: 'Plecy/Dwugłowe', serie: '3', powtórzenia: '6-8' },
-            { ćwiczenie: 'Podciąganie na drążku (lub ściąganie wyciągu)', target: 'Plecy szerokość', serie: '3', powtórzenia: '8-10' },
-            { ćwiczenie: 'Wiosłowanie sztangą w opadzie tułowia', target: 'Plecy grubość', serie: '3', powtórzenia: '8-10' },
-            { ćwiczenie: 'Uginanie nóg leżąc/siedząc (Dwugłowe)', target: 'Dwugłowe', serie: '3', powtórzenia: '10-12' },
-            { ćwiczenie: 'Allahy (na brzuch)', target: 'Brzuch', serie: '3', powtórzenia: '15-20' },
-        ]
+        day: 'Dzień 4: Nogi',
+        focus: 'Mocny trening ud, pośladków i łydek.',
+        exercises: [
+            { name: 'Przysiad ze sztangą (High Bar/Low Bar)', sets: '4', reps: '6-8', notes: 'Król ćwiczeń. Pilnuj techniki, głębokość ATG.' },
+            { name: 'Wypychanie na suwnicy (Leg Press)', sets: '3', reps: '10-12', notes: 'Wysoka objętość, dla siły i hipertrofii.' },
+            { name: 'Uginanie nóg na maszynie leżąc', sets: '3', reps: '12-15', notes: 'Izolacja dwugłowych uda. Wolne opuszczanie.' },
+            { name: 'Wykroki z hantlami/sztangą', sets: '3', reps: '10-12 na nogę', notes: 'Wyzwanie dla równowagi i pośladków.' },
+            { name: 'Wspięcia na palce stojąc', sets: '4', reps: '15-20', notes: 'Maksymalne rozciągnięcie i spięcie łydki.' },
+        ],
     },
 ];
 
-// Komponent do renderowania tabeli ćwiczeń
-const WorkoutTable = ({ data, title }) => (
-    <div className="mb-10 p-6 border border-gray-100 rounded-3xl bg-white shadow-xl transition duration-300 transform hover:scale-[1.01] hover:shadow-2xl">
-        <h3 className={`text-2xl font-extrabold font-heading text-gray-900 mb-6 flex items-center`}>
-            {title} <Dumbbell className={`w-7 h-7 ml-3 text-primary-600 flex-shrink-0`} />
-        </h3>
-        <div className="overflow-x-auto rounded-xl border border-gray-200">
-            <table className="min-w-full border-collapse">
-                <thead>
-                    <tr className={`bg-gray-100 text-gray-700`}>
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Ćwiczenie</th>
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Celowany Mięsień</th>
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Serie</th>
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Powtórzenia</th>
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                    {data.map((item, index) => (
-                        <motion.tr 
-                            key={index} 
-                            className="hover:bg-gray-50 transition duration-200"
-                            initial={{ opacity: 0, x: -10 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.05 }}
-                        >
-                            <td className="px-4 py-3 whitespace-normal text-sm font-medium text-gray-900">{item.ćwiczenie}</td>
-                            <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">{item.target}</td>
-                            <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">{item.serie}</td>
-                            <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">{item.powtórzenia}</td>
-                        </motion.tr>
-                    ))}
-                </tbody>
-            </table>
+// Komponent wyświetlający pojedyncze ćwiczenie
+const ExerciseRow = ({ exercise }) => (
+    <div className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0">
+        <div className="flex-1 min-w-0 pr-4">
+            <p className="text-gray-900 font-semibold">{exercise.name}</p>
+            <p className="text-sm text-gray-500 mt-1 italic">{exercise.notes}</p>
+        </div>
+        <div className="text-right flex-shrink-0">
+            <p className="text-sm text-gray-700 font-medium">{exercise.sets} serie</p>
+            <p className="text-xs text-indigo-600 font-bold">{exercise.reps} powtórzeń</p> 
         </div>
     </div>
 );
 
-
-// Główny komponent strony
-const App = () => {
+// Komponent dla pojedynczego Dnia Treningowego
+const TrainingDayCard = ({ plan }) => {
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 font-inter text-gray-900">
-            <Header /> {/* Komponent Header (Twoja wersja) */}
+        <div className="bg-white rounded-xl shadow-2xl overflow-hidden h-full flex flex-col transition duration-300 hover:shadow-indigo-300/50">
             
-            <main className="flex-grow">
-                <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-                    
-                    {/* BANNER GŁÓWNY */}
-                    <motion.header 
-                        className="text-center mb-16 p-12 rounded-3xl shadow-xl bg-gradient-to-br from-white to-gray-100 border-b-4 border-primary-600/50"
-                        initial={{ opacity: 0, y: -50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.0 }}
-                    >
-                        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black font-heading text-gray-900 mb-4 leading-tight tracking-tight">
-                            PLAN TRENINGOWY SPLIT
-                        </h1>
-                        <p className="text-2xl sm:text-3xl text-primary-600 font-extrabold mb-5">
-                            DLA ŚREDNIOZAAWANSOWANYCH: Maksymalna Objętość na Parti
-                        </p>
-                        <Zap className="w-12 h-12 text-primary-600 mx-auto mt-4 animate-pulse drop-shadow-lg" />
-                    </motion.header>
-
-
-                    {/* SEKCJA 1: WPROWADZENIE I KIEDY ZMIENIĆ */}
-                    <MotionDiv 
-                        className="mb-16 p-8 bg-white rounded-3xl shadow-2xl border border-gray-100"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-primary-600 mb-6 flex items-center border-b pb-3 border-gray-200">
-                            <Maximize2 className="w-7 h-7 mr-3 flex-shrink-0" />
-                            Czym Jest Plan Split i Kiedy Na Niego Przejść?
-                        </h2>
-                        <p className="text-lg text-gray-700 mb-4">
-                            Plan Split (Dzielony) polega na dzieleniu ciała na kilka sesji, trenując każdą partię mięśniową **raz w tygodniu** z bardzo wysoką objętością. Jest to naturalny następny krok po opanowaniu FBW i jest dedykowany dla osób, które chcą skupić się na **szczegółowym rozbudowywaniu mięśni**.
-                        </p>
-                        <p className="font-semibold text-gray-900 border-l-4 border-primary-600 pl-4 py-1 bg-primary-50 transition duration-300 hover:shadow-md">
-                            **Przejście na Split:** Jest to idealny moment, gdy masz za sobą 3-6 miesięcy treningu FBW i potrzebujesz większej intensywności dla małej grupy mięśni w trakcie jednej sesji.
-                        </p>
-                        <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4 mt-4">
-                            <li className="flex items-start"><CheckCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-green-500" /> **Wysoka Objętość:** Jedna partia mięśniowa jest dosłownie "bombardowana" w trakcie jednej sesji.</li>
-                            <li className="flex items-start"><CheckCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-green-500" /> **Długi Odpoczynek:** 7 dni przerwy na regenerację każdej partii.</li>
-                            <li className="flex items-start"><CheckCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-green-500" /> **Skupienie na Detalach:** Idealny, gdy celujesz w konkretne grupy (np. boczne aktony barków).</li>
-                        </ul>
-                    </MotionDiv>
-
-                    {/* SEKCJA 2: HARMONOGRAM */}
-                    <MotionDiv 
-                        className="mb-16 p-8 bg-white rounded-3xl shadow-2xl border border-gray-100"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-primary-600 mb-6 flex items-center border-b pb-3 border-gray-200">
-                            <CalendarCheck className="w-7 h-7 mr-3 flex-shrink-0" />
-                            Przykładowy Harmonogram Planu Split (4 Dni)
-                        </h2>
-                        
-                        <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-xl">
-                            <table className="min-w-full border-collapse">
-                                <thead>
-                                    <tr className="bg-gray-100 text-gray-700">
-                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Dzień</th>
-                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Partie Mięśniowe</th>
-                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Cel</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-200">
-                                    {splitSchedule.map((item, index) => (
-                                        <motion.tr 
-                                            key={index} 
-                                            className={`${item.isTraining ? 'bg-white hover:bg-gray-50' : 'bg-gray-50 hover:bg-gray-100'} transition duration-200`}
-                                            initial={{ opacity: 0 }}
-                                            whileInView={{ opacity: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.05 }}
-                                        >
-                                            <td className={`px-4 py-4 whitespace-nowrap text-sm ${item.isTraining ? 'font-bold text-primary-600' : 'text-gray-500'}`}>{item.day}</td>
-                                            <td className={`px-4 py-4 whitespace-nowrap text-sm text-gray-700`}>{item.training}</td>
-                                            <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{item.isTraining ? 'Intensywny Trening' : 'Regeneracja'}</td>
-                                        </motion.tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div className="bg-red-100 p-4 rounded-lg mt-6 border-l-4 border-red-500">
-                            <p className="text-sm text-red-700">
-                                **Elastyczność:** Pamiętaj o minimum jednym dniu przerwy po dwóch dniach treningowych, aby nie przeciążyć układu nerwowego.
-                            </p>
-                        </div>
-                    </MotionDiv>
-
-                    {/* SEKCJA 3: PLAN TRENINGOWY */}
-                    <MotionDiv 
-                        className="mb-16 p-8 bg-gray-100 rounded-3xl shadow-2xl border border-gray-200"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.1 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-gray-900 mb-8 flex items-center border-b pb-3 border-gray-200">
-                            <Dumbbell className="w-7 h-7 mr-3 text-primary-600 flex-shrink-0" />
-                            Szczegółowy Przykład Ćwiczeń Split
-                        </h2>
-                        
-                        {workoutSections.map((section, index) => (
-                            <WorkoutTable 
-                                key={index} 
-                                data={section.data} 
-                                title={section.title} 
-                            />
-                        ))}
-                    </MotionDiv>
-
-                    {/* SEKCJA 4: ZASADY SPLIT */}
-                    <MotionDiv 
-                        className="p-8 bg-white rounded-3xl shadow-2xl border-l-8 border-primary-600"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-primary-600 mb-6 flex items-center">
-                            <TrendingUp className="w-7 h-7 mr-3 flex-shrink-0" />
-                            Kluczowe Zasady Planu Split
-                        </h2>
-                        <ul className="space-y-4 text-gray-700">
-                            <li className="flex items-start p-2 rounded-lg hover:bg-gray-50 transition duration-200 border-b border-gray-100">
-                                <Maximize2 className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500" />
-                                <p>
-                                    <strong>Zakres Powtórzeń:</strong> Ze względu na większą objętość i nacisk na hipertrofię, trzymaj się zakresu **8-12 powtórzeń** dla większości ćwiczeń.
-                                </p>
-                            </li>
-                            <li className="flex items-start p-2 rounded-lg hover:bg-gray-50 transition duration-200 border-b border-gray-100">
-                                <Clock className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500" />
-                                <p>
-                                    <strong>Długość Przerwy:</strong> Wydłuż przerwy do **90-120 sekund** dla ćwiczeń złożonych, aby zachować siłę.
-                                </p>
-                            </li>
-                            <li className="flex items-start p-3 rounded-lg bg-red-100 border border-red-500 transition duration-200">
-                                <AlertTriangle className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-red-500" />
-                                <p className="font-semibold text-red-700">
-                                    <strong>Intensywność Blisko Upadku:</strong> W Split możesz i powinieneś pracować blisko upadku mięśniowego (RIR 1-2). Mięsień musi być maksymalnie zmęczony.
-                                </p>
-                            </li>
-                        </ul>
-                    </MotionDiv>
+            {/* Nagłówek Dnia (Ujednolicony styl indigo) */}
+            <div className={`p-6 bg-indigo-50 border-b-4 border-indigo-600 flex items-center`}>
+                <MuscleIcon />
+                <div>
+                    <h3 className="text-2xl font-bold text-gray-900">{plan.day}</h3>
+                    <p className="text-sm text-gray-600 mt-1">{plan.focus}</p>
                 </div>
-            </main>
+            </div>
 
-            <Footer /> {/* Komponent Footer (Twoja wersja) */}
+            {/* Lista Ćwiczeń */}
+            <div className="p-6 space-y-2 flex-1">
+                {plan.exercises.map((exercise, index) => (
+                    <ExerciseRow key={index} exercise={exercise} />
+                ))}
+            </div>
         </div>
     );
 };
 
-export default App;
+
+// KOMPAKTOWY PRZEŁĄCZNIK PLANÓW (Wyrównanie do Prawej)
+const QuickPlanSwitcher = ({ currentPlan }) => {
+    const plans = [
+        { name: 'FBW', currentName: 'FBW', href: './FBW', label: 'Plan FBW' },
+        { name: 'SPLIT', currentName: 'SPLIT', href: './SPLIT', label: 'Przejdź do Planu SPLIT' },
+        { name: 'PPL', currentName: 'PPL', href: './PPL', label: 'Plan PPL' },
+    ];
+    
+    // Filtr: usuwa link do aktualnej strony (SPLIT)
+    const otherPlans = plans.filter(plan => plan.currentName !== currentPlan);
+
+    if (otherPlans.length === 0) return null;
+
+    return (
+        // flex-col na mobilnym, justify-between na desktopowym
+        <div className="w-full bg-white p-4 rounded-xl shadow-lg flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4 mb-12">
+            
+            {/* Profesjonalny tekst/CTA */}
+            <p className="text-base text-indigo-700 font-bold flex-grow text-center sm:text-left uppercase tracking-wider">
+                <span className="hidden sm:inline">➡️</span> Zobacz Alternatywne Schematy Treningowe
+            </p>
+
+            {/* Kontener dla przycisków (wyrównany do prawej na desktopie) */}
+            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+                {otherPlans.map(plan => (
+                    <a
+                        key={plan.name}
+                        href={plan.href}
+                        className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-500 hover:bg-indigo-600 transition duration-150"
+                    >
+                        {plan.label}
+                    </a>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+
+// GŁÓWNY KOMPONENT TREŚCI
+const SplitContent = () => {
+    return (
+        <section className="bg-gray-100 py-16 sm:py-24" id="plan-split">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                {/* Nagłówek Sekcji */}
+                <div className="text-center mb-12">
+                    <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
+                        Trening dla Zaawansowanych
+                    </h2>
+                    <p className="mt-2 text-4xl font-extrabold text-gray-900 sm:text-5xl">
+                        Intensywny Plan Treningowy SPLIT (4 Dni)
+                    </p>
+                    <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                        Trening SPLIT (dzielony) pozwala na maksymalne skupienie się na konkretnych partiach mięśniowych, optymalny dla budowania masy i rzeźby.
+                    </p>
+                </div>
+
+                {/* Wstawianie Kompaktowego Przełącznika - Wyrównany do Prawej */}
+                <QuickPlanSwitcher currentPlan={'SPLIT'} />
+
+                {/* Kontener Dni Treningowych (GRID) */}
+                <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+                    {splitPlan.map((plan, index) => (
+                        <TrainingDayCard key={index} plan={plan} />
+                    ))}
+                </div>
+
+                {/* Wskazówki Treningowe */}
+                <div className="mt-16 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-600">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Ważne Wskazówki do Planu SPLIT</h3>
+                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                        <li>**Regeneracja:** Pamiętaj o dniu przerwy pomiędzy treningami, np. Poniedziałek, Wtorek, Środa (Wolne), Czwartek, Piątek.</li>
+                        <li>**Objętość:** Na każdą dużą partię mięśniową wykonujesz 8-12 serii efektywnych w tygodniu.</li>
+                        <li>**Odżywianie:** Trening Split wymaga odpowiednio zbilansowanej diety, szczególnie jeśli celujesz w masę mięśniową.</li>
+                    </ul>
+                </div>
+
+                {/* CTA - Lead Magnet (ostatnia sekcja przed Footerem) */}
+                <div className="text-center mt-12">
+                    <p className="text-xl text-gray-800 font-semibold mb-4">
+                        Stwórz swój spersonalizowany plan SPLIT!
+                    </p>
+                    <a
+                        href="/pobierz-ebook-split"
+                        className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg shadow-xl text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105"
+                    >
+                        Pobierz DARMOWY Przewodnik po SPLIT!
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+// GŁÓWNY KOMPONENT STRONY
+const SplitPage = () => {
+    return (
+        <div className="flex flex-col min-h-screen">
+            <Header /> 
+            <main className="flex-grow">
+                <SplitContent />
+            </main>
+            <Footer />
+        </div>
+    );
+};
+
+export default SplitPage;

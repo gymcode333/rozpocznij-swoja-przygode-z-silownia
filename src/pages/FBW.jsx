@@ -1,263 +1,200 @@
-"use client";
+// pages/plan-fbw.js - Z Kompaktowym Przełącznikiem Planów Wyrównanym do Prawej i Ulepszoną Sekcją CTA
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Dumbbell, CalendarCheck, TrendingUp, AlertTriangle, CheckCircle, Target, Zap, Clock } from 'lucide-react';
+
+// 1. ZAKŁADAMY, ŻE TE KOMPONENTY ISTNIEJĄ (Dostosuj ścieżki importu)
 import Header from '../components/Header'; 
-import Footer from '../components/Footer';
+import Footer from '../components/Footer'; 
 
+// Ikona, użyta w stylu FBW (kolor indigo)
+const MuscleIcon = () => (
+    <svg className="w-7 h-7 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+    </svg>
+);
 
-const MotionDiv = motion.div;
-
-// Warianty animacji dla sekcji
-const sectionVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.99 },
-    visible: { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1,
-        transition: { duration: 0.7, ease: "easeOut" }
+// DANE: Plan Treningowy FBW (3 dni) (Bez zmian)
+const fbwPlan = [
+    {
+        day: 'Trening A',
+        focus: 'Akcent na ćwiczenia złożone (siła)',
+        exercises: [
+            { name: 'Przysiad ze sztangą', sets: '4', reps: '8-10', notes: 'Główny ruch na nogi. Pełne zejście.' },
+            { name: 'Wyciskanie sztangi na ławce płaskiej', sets: '4', reps: '8-10', notes: 'Główny ruch na klatkę. Kontrola.' },
+            { name: 'Wiosłowanie sztangą/hantlami', sets: '4', reps: '8-10', notes: 'Główny ruch na plecy. Mocne spięcie.' },
+            { name: 'Wyciskanie żołnierskie (barki)', sets: '3', reps: '10-12', notes: 'Ćwiczenie na barki. Stabilny tułów.' },
+            { name: 'Uginanie ramion ze sztangą (biceps)', sets: '2', reps: '10-12', notes: 'Izolacja bicepsa.' },
+            { name: 'Prostowanie ramion na wyciągu (triceps)', sets: '2', reps: '10-12', notes: 'Izolacja tricepsa.' },
+        ],
     },
-};
-
-// Dane do tabel (Table data)
-const scheduleData = [
-    { day: 'Poniedziałek', training: 'Trening A', goal: 'Całe Ciało', isTraining: true },
-    { day: 'Wtorek', training: 'Odpoczynek/Aktywna Regeneracja', goal: '-', isTraining: false },
-    { day: 'Środa', training: 'Trening B', goal: 'Całe Ciało', isTraining: true },
-    { day: 'Czwartek', training: 'Odpoczynek/Aktywna Regeneracja', goal: '-', isTraining: false },
-    { day: 'Piątek', training: 'Trening C', goal: 'Całe Ciało', isTraining: true },
-    { day: 'Weekend', training: 'Odpoczynek i Regeneracja', goal: '-', isTraining: false },
+    {
+        day: 'Trening B',
+        focus: 'Akcent na objętość (hipertrofia)',
+        exercises: [
+            { name: 'Martwy Ciąg (Rumuński)', sets: '4', reps: '8-10', notes: 'Akcent na dwugłowe uda i pośladki.' },
+            { name: 'Wyciskanie hantli skos w górę', sets: '4', reps: '10-12', notes: 'Akcent na górną klatkę.' },
+            { name: 'Ściąganie drążka szerokim chwytem', sets: '4', reps: '10-12', notes: 'Akcent na szerokość pleców.' },
+            { name: 'Unoszenie hantli bokiem (barki)', sets: '3', reps: '12-15', notes: 'Izolacja bocznego aktonu.' },
+            { name: 'Uginanie młotkowe (hantle)', sets: '2', reps: '10-12', notes: 'Akcent na przedramiona.' },
+            { name: 'Pompki na poręczach (Dipsy)', sets: '2', reps: '10-12', notes: 'Akcent na triceps i dolną klatkę.' },
+        ],
+    },
+    {
+        day: 'Trening C',
+        focus: 'Trening mieszany (siła i objętość)',
+        exercises: [
+            { name: 'Wypychanie na suwnicy (Leg Press)', sets: '3', reps: '12-15', notes: 'Wysoka objętość na nogi.' },
+            { name: 'Pompki na poręczach (Dipsy/Dumbbell Press)', sets: '4', reps: '8-10', notes: 'Alternatywny ruch na klatkę.' },
+            { name: 'Podciąganie (chwyt neutralny)', sets: '4', reps: 'Max', notes: 'Dla grubości pleców.' },
+            { name: 'Face Pulls (tylny akton barków)', sets: '3', reps: '15-20', notes: 'Dla zdrowia stawów i postawy.' },
+            { name: 'Modlitewnik (biceps)', sets: '2', reps: '10-12', notes: 'Maksymalna izolacja bicepsa.' },
+            { name: 'Wyciskanie francuskie (triceps)', sets: '2', reps: '10-12', notes: 'Ćwiczenie na masę tricepsa.' },
+        ],
+    },
 ];
 
-const treningA = [
-    { partia: 'Nogi (przód/tył)', ćwiczenie: 'Przysiady ze sztangą na plecach (lub goblet squat)', serie: '3', powtórzenia: '10–12' },
-    { partia: 'Klatka piersiowa', ćwiczenie: 'Wyciskanie hantli na ławce płaskiej', serie: '3', powtórzenia: '10–12' },
-    { partia: 'Plecy (szerokość)', ćwiczenie: 'Wiosłowanie hantlem w opadzie tułowia', serie: '3', powtórzenia: '10–12 (na każdą rękę)' },
-    { partia: 'Barki', ćwiczenie: 'Wyciskanie hantli siedząc (żołnierskie)', serie: '2', powtórzenia: '10–12' },
-    { partia: 'Ramiona', ćwiczenie: 'Uginanie przedramion ze sztangą (biceps)', serie: '2', powtórzenia: '10–12' },
-    { partia: 'Brzuch', ćwiczenie: 'Deska (Plank)', serie: '3', powtórzenia: '45-60 sekund' },
-];
+// ... (ExerciseRow i TrainingDayCard bez zmian)
 
-const treningB = [
-    { partia: 'Nogi (tył/plecy)', ćwiczenie: 'Martwy ciąg na prostych nogach (Rumuński)', serie: '3', powtórzenia: '10–12' },
-    { partia: 'Plecy (góra/grubość)', ćwiczenie: 'Ściąganie drążka wyciągu górnego do klatki', serie: '3', powtórzenia: '10–12' },
-    { partia: 'Klatka piersiowa', ćwiczenie: 'Rozpiętki na maszynie Pec Deck (lub z hantlami)', serie: '3', powtórzenia: '12–15' },
-    { partia: 'Barki', ćwiczenie: 'Unoszenie hantli bokiem (na barki boczne)', serie: '2', powtórzenia: '12–15' },
-    { partia: 'Ramiona', ćwiczenie: 'Prostowanie przedramion na wyciągu górnym (triceps)', serie: '2', powtórzenia: '10–12' },
-    { partia: 'Brzuch', ćwiczenie: 'Spięcia brzucha leżąc', serie: '3', powtórzenia: '15–20' },
-];
-
-const treningC = [
-    { partia: 'Nogi (całe)', ćwiczenie: 'Wykroki z hantlami', serie: '3', powtórzenia: '10–12 (na każdą nogę)' },
-    { partia: 'Klatka piersiowa', ćwiczenie: 'Wyciskanie sztangi na ławce skośnej (skos głową w górę)', serie: '3', powtórzenia: '10–12' },
-    { partia: 'Plecy (dół)', ćwiczenie: 'Hyperextension (prostowanie tułowia na ławce rzymskiej)', serie: '3', powtórzenia: '12–15' },
-    { partia: 'Barki', ćwiczenie: 'Podciąganie sztangi wzdłuż tułowia (High Pull)', serie: '2', powtórzenia: '10–12' },
-    { partia: 'Ramiona', ćwiczenie: 'Młotkowanie hantlami (Hammer Curls)', serie: '2', powtórzenia: '10–12' },
-    { partia: 'Brzuch', ćwiczenie: 'Unoszenie nóg w zwisie na drążku (lub leżąc)', serie: '3', powtórzenia: '10–15' },
-];
-
-// Komponent do renderowania tabeli ćwiczeń (Workout table component)
-const WorkoutTable = ({ data, title }) => (
-    <div className="mb-8 p-6 bg-white rounded-xl shadow-lg border border-gray-100 transition duration-300 transform hover:scale-[1.01] hover:shadow-xl">
-        <h3 className="text-2xl font-extrabold font-heading text-gray-900 mb-4 flex items-center">
-            {title} <Dumbbell className="w-6 h-6 ml-3 text-primary-600 flex-shrink-0" />
-        </h3>
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
-            <table className="min-w-full border-collapse">
-                <thead>
-                    {/* Jasny/szary nagłówek tabeli */}
-                    <tr className="bg-gray-100 text-primary-600">
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-700">Partia Mięśniowa</th>
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-700">Ćwiczenie</th>
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-700">Serie</th>
-                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-700">Powtórzenia</th>
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                    {data.map((item, index) => (
-                        <motion.tr 
-                            key={index} 
-                            className="hover:bg-gray-50 transition duration-200"
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.05 }}
-                        >
-                            <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{item.partia}</td>
-                            <td className="px-4 py-3 whitespace-normal text-sm text-gray-600">{item.ćwiczenie}</td>
-                            <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">{item.serie}</td>
-                            <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">{item.powtórzenia}</td>
-                        </motion.tr>
-                    ))}
-                </tbody>
-            </table>
+const ExerciseRow = ({ exercise }) => (
+    <div className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0">
+        <div className="flex-1 min-w-0 pr-4">
+            <p className="text-gray-900 font-semibold">{exercise.name}</p>
+            <p className="text-sm text-gray-500 mt-1 italic">{exercise.notes}</p>
+        </div>
+        <div className="text-right flex-shrink-0">
+            <p className="text-sm text-gray-700 font-medium">{exercise.sets} serie</p>
+            <p className="text-xs text-indigo-600 font-bold">{exercise.reps} powtórzeń</p> 
         </div>
     </div>
 );
 
-
-// Główny komponent (The main component, App)
-const App = () => {
+const TrainingDayCard = ({ plan }) => {
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 font-inter text-gray-900">
-            <Header /> {/* Zastąpione Twoim komponentem Header */}
-            
-            <main className="flex-grow">
-                <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-                    
-                    {/* BANNER GŁÓWNY */}
-                    <motion.header 
-                        className="text-center mb-16 p-12 rounded-3xl shadow-xl bg-gradient-to-br from-white to-gray-100 border-b-4 border-primary-600/50"
-                        initial={{ opacity: 0, y: -50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.0 }}
-                    >
-                        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black font-heading text-gray-900 mb-4 leading-tight tracking-tight">
-                            PLAN TRENINGOWY FBW
-                        </h1>
-                        <p className="text-2xl sm:text-3xl text-primary-600 font-extrabold mb-5">
-                            FULL BODY WORKOUT: Fundament Twojej Siły
-                        </p>
-                        <Zap className="w-12 h-12 text-primary-600 mx-auto mt-4 animate-pulse drop-shadow-lg" />
-                    </motion.header>
-
-
-                    {/* SEKCJA 1: WPROWADZENIE */}
-                    <MotionDiv 
-                        className="mb-16 p-8 bg-white rounded-3xl shadow-2xl border border-gray-100"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-primary-600 mb-6 flex items-center border-b pb-3 border-gray-200">
-                            <Target className="w-7 h-7 mr-3 flex-shrink-0" />
-                            Co to jest Trening FBW i Dlaczego Jest Idealny dla Początkujących?
-                        </h2>
-                        <p className="text-lg text-gray-700 mb-4">
-                            **FBW (Full Body Workout)** to plan treningowy, w którym podczas każdej sesji ćwiczysz <strong>wszystkie główne partie mięśniowe ciała</strong>. Jest to absolutny **fundament** dla każdego, kto dopiero zaczyna swoją przygodę na siłowni, ponieważ uczy podstaw i buduje ogólną bazę siłową.
-                        </p>
-                        <p className="font-semibold text-gray-900 border-l-4 border-primary-600 pl-4 py-1 bg-primary-50 transition duration-300 hover:shadow-md">
-                            **Kluczowa Zasada:** Trening 3 razy w tygodniu (A-wolne-B-wolne-C-wolne), co daje optymalną częstotliwość stymulacji dla początkujących.
-                        </p>
-                        <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4 mt-4">
-                            <li className="flex items-start"><CheckCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-green-500" /> **Maksymalna Częstotliwość:** Każda partia trenowana 3x/tydz.</li>
-                            <li className="flex items-start"><CheckCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-green-500" /> **Szybka Regeneracja:** Dzień przerwy między treningami.</li>
-                            <li className="flex items-start"><CheckCircle className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-green-500" /> **Nauka Wzorców:** Skupienie na ćwiczeniach wielostawowych (przysiad, wyciskanie, wiosłowanie).</li>
-                        </ul>
-                    </MotionDiv>
-
-                    {/* SEKCJA 2: HARMONOGRAM */}
-                    <MotionDiv 
-                        className="mb-16 p-8 bg-white rounded-3xl shadow-2xl border border-gray-100"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-primary-600 mb-6 flex items-center border-b pb-3 border-gray-200">
-                            <CalendarCheck className="w-7 h-7 mr-3 flex-shrink-0" />
-                            Podstawowa Struktura Planu FBW (3 Dni w Tygodniu)
-                        </h2>
-                        
-                        <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-xl">
-                            <table className="min-w-full border-collapse">
-                                <thead>
-                                    <tr className="bg-gray-100 text-gray-700">
-                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Dzień</th>
-                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Trening</th>
-                                        <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Cel</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-200">
-                                    {scheduleData.map((item, index) => (
-                                        <motion.tr 
-                                            key={index} 
-                                            className={`${item.isTraining ? 'bg-white hover:bg-gray-50' : 'bg-gray-50 hover:bg-gray-100'} transition duration-200`}
-                                            initial={{ opacity: 0 }}
-                                            whileInView={{ opacity: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.05 }}
-                                        >
-                                            <td className={`px-4 py-3 whitespace-nowrap text-sm ${item.isTraining ? 'font-bold text-primary-600' : 'text-gray-500'}`}>{item.day}</td>
-                                            <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-700">{item.training}</td>
-                                            <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{item.goal}</td>
-                                        </motion.tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div className="bg-red-100 p-4 rounded-lg mt-6 border-l-4 border-red-500">
-                            <p className="text-sm text-red-700">
-                                **Przypomnienie:** Zawsze zacznij od **10 minut rozgrzewki ogólnej** i **specjalistycznej** przed pierwszym ćwiczeniem głównym.
-                            </p>
-                        </div>
-                    </MotionDiv>
-
-                    {/* SEKCJA 3: TRENINGI */}
-                    <MotionDiv 
-                        className="mb-16 p-8 bg-gray-100 rounded-3xl shadow-2xl border border-gray-200"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.1 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-gray-900 mb-8 flex items-center border-b pb-3 border-gray-200">
-                            <Dumbbell className="w-7 h-7 mr-3 text-primary-600 flex-shrink-0" />
-                            Przykładowy Plan Treningowy FBW (A-B-C)
-                        </h2>
-                        <div className="bg-primary-50 p-4 rounded-lg mb-6 border-l-4 border-primary-600">
-                            <p className="text-sm text-primary-700 text-center font-bold">
-                                Skup się na **idealnej technice** – kontrola i zakres ruchu są ważniejsze niż ciężar!
-                            </p>
-                        </div>
-
-                        <WorkoutTable data={treningA} title="Trening A (Poniedziałek)" />
-                        <WorkoutTable data={treningB} title="Trening B (Środa)" />
-                        <WorkoutTable data={treningC} title="Trening C (Piątek)" />
-                    </MotionDiv>
-
-                    {/* SEKCJA 4: ZASADY */}
-                    <MotionDiv 
-                        className="p-8 bg-white rounded-3xl shadow-2xl border-l-8 border-primary-600"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={sectionVariants}
-                    >
-                        <h2 className="text-3xl font-extrabold font-heading text-primary-600 mb-6 flex items-center">
-                            <CheckCircle className="w-7 h-7 mr-3 flex-shrink-0" />
-                            Złote Zasady FBW dla Początkujących
-                        </h2>
-                        <ul className="space-y-4 text-gray-700">
-                            <li className="flex items-start p-2 rounded-lg hover:bg-gray-50 transition duration-200 border-b border-gray-100">
-                                <TrendingUp className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500" />
-                                <p>
-                                    <strong>Progresja Minimalna:</strong> Co tydzień staraj się zwiększyć obciążenie o 1-2 kg LUB wykonać o 1 powtórzenie więcej. Stały progres jest kluczem.
-                                </p>
-                            </li>
-                            <li className="flex items-start p-2 rounded-lg hover:bg-gray-50 transition duration-200 border-b border-gray-100">
-                                <Clock className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500" />
-                                <p>
-                                    <strong>Czas Przerwy:</strong> Trzymaj się 60–90 sekund między seriami. W FBW czas jest ważny, aby utrzymać tempo treningu.
-                                </p>
-                            </li>
-                            <li className="flex items-start p-3 rounded-lg bg-red-100 border border-red-500 transition duration-200">
-                                <AlertTriangle className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-red-500" />
-                                <p className="font-semibold text-red-700">
-                                    <strong>Regeneracja = Wzrost:</strong> Mięśnie nóg trenowane w poniedziałek muszą mieć czas na odbudowę przed piątkiem. Dieta i sen są najważniejsze!
-                                </p>
-                            </li>
-                        </ul>
-                    </MotionDiv>
+        <div className="bg-white rounded-xl shadow-2xl overflow-hidden h-full flex flex-col transition duration-300 hover:shadow-indigo-300/50">
+            <div className={`p-6 bg-indigo-50 border-b-4 border-indigo-600 flex items-center`}>
+                <MuscleIcon />
+                <div>
+                    <h3 className="text-2xl font-bold text-gray-900">{plan.day}</h3>
+                    <p className="text-sm text-gray-600 mt-1">{plan.focus}</p>
                 </div>
-            </main>
-
-            <Footer /> {/* Zastąpione Twoim komponentem Footer */}
+            </div>
+            <div className="p-6 space-y-2 flex-1">
+                {plan.exercises.map((exercise, index) => (
+                    <ExerciseRow key={index} exercise={exercise} />
+                ))}
+            </div>
         </div>
     );
 };
 
-export default App;
+
+// KOMPAKTOWY PRZEŁĄCZNIK PLANÓW (ZMODYFIKOWANY: Wymiana tekstu na profesjonalny CTA)
+const QuickPlanSwitcher = ({ currentPlan }) => {
+    const plans = [
+        { name: 'FBW', currentName: 'FBW', href: './FBW', label: 'Przejdź do Planu FBW' },
+        { name: 'SPLIT', currentName: 'SPLIT', href: './SPLIT', label: 'Plan SPLIT' },
+        { name: 'PPL', currentName: 'PPL', href: './PPL', label: 'Plan PPL' },
+    ];
+    
+    // Filtrujemy, zostawiamy tylko inne plany niż obecny
+    const otherPlans = plans.filter(plan => plan.currentName !== currentPlan);
+
+    if (otherPlans.length === 0) return null;
+
+    return (
+        // flex-col na mobilnym, justify-between na desktopowym
+        <div className="w-full bg-white p-4 rounded-xl shadow-lg flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4 mb-12">
+            
+            {/* NOWY, PROFESJONALNY TEKST/CTA */}
+            <p className="text-base text-indigo-700 font-bold flex-grow text-center sm:text-left uppercase tracking-wider">
+                <span className="hidden sm:inline">➡️</span> Zobacz Alternatywne Schematy Treningowe
+            </p>
+
+            {/* Kontener dla przycisków (wyrównanie do prawej na desktopie) */}
+            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+                {otherPlans.map(plan => (
+                    <a
+                        key={plan.name}
+                        href={plan.href}
+                        className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-500 hover:bg-indigo-600 transition duration-150"
+                    >
+                        {plan.label}
+                    </a>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+
+// GŁÓWNY KOMPONENT TREŚCI
+const FbwContent = () => {
+    return (
+        <section className="bg-gray-100 py-16 sm:py-24" id="plan-fbw">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                {/* Nagłówek Sekcji */}
+                <div className="text-center mb-12">
+                    <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
+                        Trening dla Początkujących
+                    </h2>
+                    <p className="mt-2 text-4xl font-extrabold text-gray-900 sm:text-5xl">
+                        Plan Treningowy FBW (Full Body Workout)
+                    </p>
+                    <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                        FBW to idealny start: trenujesz całe ciało na jednej sesji, co świetnie buduje siłę i kondycję.
+                    </p>
+                </div>
+
+                {/* Wstawianie Kompaktowego Przełącznika - Wyrównany do Prawej */}
+                <QuickPlanSwitcher currentPlan={'FBW'} />
+
+                {/* Kontener Dni Treningowych (GRID) */}
+                <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                    {fbwPlan.map((plan, index) => (
+                        <TrainingDayCard key={index} plan={plan} />
+                    ))}
+                </div>
+
+                {/* Wskazówki Treningowe */}
+                <div className="mt-16 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-600">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Ważne Wskazówki do Planu FBW</h3>
+                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                        <li>**Częstotliwość:** Trenuj 3 razy w tygodniu (np. Poniedziałek, Środa, Piątek). Dni wolne są kluczowe.</li>
+                        <li>**Zasada:** Pomiędzy treningami musi być minimum jeden dzień wolnego na pełną regenerację.</li>
+                        <li>**Obciążenie:** Skup się na ciężarze, który pozwala Ci wykonać wszystkie powtórzenia z idealną techniką.</li>
+                    </ul>
+                </div>
+
+                {/* CTA - Lead Magnet (ostatnia sekcja przed Footerem) */}
+                <div className="text-center mt-12">
+                    <p className="text-xl text-gray-800 font-semibold mb-4">
+                        Pobierz gotowy 8-tygodniowy plan FBW z progresją!
+                    </p>
+                    <a
+                        href="/pobierz-ebook-fbw"
+                        className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg shadow-xl text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105"
+                    >
+                        Pobierz DARMOWY Plan dla Początkujących
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+    );
+};
+
+// GŁÓWNY KOMPONENT STRONY
+const FbwPage = () => {
+    return (
+        <div className="flex flex-col min-h-screen">
+            <Header /> 
+            <main className="flex-grow">
+                <FbwContent />
+            </main>
+            <Footer />
+        </div>
+    );
+};
+
+export default FbwPage;

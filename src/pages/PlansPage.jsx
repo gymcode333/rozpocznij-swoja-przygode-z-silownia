@@ -77,7 +77,6 @@ const PlansPage = () => {
         {
             title: "FBW (Full Body Workout)",
             tag: "Dla początkujących",
-            // Zmieniona ścieżka do szczegółowego planu
             link: "/plany/FBW", 
             icon: Dumbbell,
             description: "Plan, w którym ćwiczysz całe ciało na każdej sesji. Idealny, aby szybko nauczyć się techniki i zbudować solidne podstawy siły.",
