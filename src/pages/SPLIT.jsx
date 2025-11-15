@@ -1,4 +1,4 @@
-// pages/plan-split.js - Z Kompaktowym Przełącznikiem Planów Wyrównanym do Prawej
+// pages/plan-split.js - BEZ PRZEŁĄCZNIKÓW DO FBW I PPL
 
 import React from 'react';
 
@@ -100,45 +100,6 @@ const TrainingDayCard = ({ plan }) => {
 };
 
 
-// KOMPAKTOWY PRZEŁĄCZNIK PLANÓW (Wyrównanie do Prawej)
-const QuickPlanSwitcher = ({ currentPlan }) => {
-    const plans = [
-        { name: 'FBW', currentName: 'FBW', href: './FBW', label: 'Plan FBW' },
-        { name: 'SPLIT', currentName: 'SPLIT', href: './SPLIT', label: 'Przejdź do Planu SPLIT' },
-        { name: 'PPL', currentName: 'PPL', href: './PPL', label: 'Plan PPL' },
-    ];
-    
-    // Filtr: usuwa link do aktualnej strony (SPLIT)
-    const otherPlans = plans.filter(plan => plan.currentName !== currentPlan);
-
-    if (otherPlans.length === 0) return null;
-
-    return (
-        // flex-col na mobilnym, justify-between na desktopowym
-        <div className="w-full bg-white p-4 rounded-xl shadow-lg flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4 mb-12">
-            
-            {/* Profesjonalny tekst/CTA */}
-            <p className="text-base text-indigo-700 font-bold flex-grow text-center sm:text-left uppercase tracking-wider">
-                <span className="hidden sm:inline">➡️</span> Zobacz Alternatywne Schematy Treningowe
-            </p>
-
-            {/* Kontener dla przycisków (wyrównany do prawej na desktopie) */}
-            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
-                {otherPlans.map(plan => (
-                    <a
-                        key={plan.name}
-                        href={plan.href}
-                        className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-500 hover:bg-indigo-600 transition duration-150"
-                    >
-                        {plan.label}
-                    </a>
-                ))}
-            </div>
-        </div>
-    );
-};
-
-
 // GŁÓWNY KOMPONENT TREŚCI
 const SplitContent = () => {
     return (
@@ -158,11 +119,8 @@ const SplitContent = () => {
                     </p>
                 </div>
 
-                {/* Wstawianie Kompaktowego Przełącznika - Wyrównany do Prawej */}
-                <QuickPlanSwitcher currentPlan={'SPLIT'} />
-
-                {/* Kontener Dni Treningowych (GRID) */}
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+                {/* Kontener Dni Treningowych (GRID) - KLUCZOWE: ID DLA KOTWICY */}
+                <div id="plan-table" className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
                     {splitPlan.map((plan, index) => (
                         <TrainingDayCard key={index} plan={plan} />
                     ))}

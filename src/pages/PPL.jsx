@@ -1,4 +1,4 @@
-// pages/plan-ppl.js - Z Kompaktowym Przełącznikiem Planów Wyrównanym do Prawej
+// pages/plan-ppl.js - BEZ PRZEŁĄCZNIKÓW DO FBW I SPLIT
 
 import React from 'react';
 
@@ -13,7 +13,7 @@ const HandIcon = () => (
     </svg>
 );
 
-// DANE: Plan Treningowy PPL (Push, Pull, Legs)
+// DANE: Plan Treningowy PPL (Push, Pull, Legs) (6 dni)
 const pplPlan = [
     {
         day: 'Dzień 1: PUSH (Pchanie)',
@@ -59,7 +59,7 @@ const pplPlan = [
             { name: 'Wyciskanie hantli siedząc (barki)', sets: '3', reps: '10-12', notes: 'Kontrolowany ruch, dla lepszej koncentracji.' },
             { name: 'Rozpiętki na maszynie Pec Deck', sets: '3', reps: '12-15', notes: 'Maksymalne dopompowanie klatki.' },
             { name: 'Unoszenie hantli w opadzie tułowia', sets: '3', reps: '15-20', notes: 'Na tylne aktony. Wyższa objętość.' },
-            { name: 'Prostowanie ramion linkami (overhand)', sets: '3', reps: '12-15', notes: 'Izolacja bocznej głowy tricepsa.' },
+            { name: 'Prostowanie ramion linkami (overhand)', sets: '3', reps: '12-15', notes: 'Izolacja bocznej głowy tricepsa.'},
         ],
     },
     {
@@ -125,43 +125,9 @@ const TrainingDayCard = ({ plan }) => {
 };
 
 
-// KOMPAKTOWY PRZEŁĄCZNIK PLANÓW (Wyrównanie do Prawej)
-const QuickPlanSwitcher = ({ currentPlan }) => {
-    const plans = [
-        { name: 'FBW', currentName: 'FBW', href: './FBW', label: 'Plan FBW' },
-        { name: 'SPLIT', currentName: 'SPLIT', href: './SPLIT', label: 'Plan SPLIT' },
-        { name: 'PPL', currentName: 'PPL', href: './PPL', label: 'Przejdź do Planu PPL' },
-    ];
-    
-    // Filtr: usuwa link do aktualnej strony (PPL)
-    const otherPlans = plans.filter(plan => plan.currentName !== currentPlan);
-
-    if (otherPlans.length === 0) return null;
-
-    return (
-        // Wyrównanie do prawej na desktopie (sm:justify-end)
-        <div className="w-full bg-white p-4 rounded-xl shadow-lg flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4 mb-12">
-            
-            {/* Profesjonalny tekst/CTA */}
-            <p className="text-base text-indigo-700 font-bold flex-grow text-center sm:text-left uppercase tracking-wider">
-                <span className="hidden sm:inline">➡️</span> Zobacz Alternatywne Schematy Treningowe
-            </p>
-
-            {/* Kontener dla przycisków (wyrównany do prawej na desktopie) */}
-            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
-                {otherPlans.map(plan => (
-                    <a
-                        key={plan.name}
-                        href={plan.href}
-                        className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-500 hover:bg-indigo-600 transition duration-150"
-                    >
-                        {plan.label}
-                    </a>
-                ))}
-            </div>
-        </div>
-    );
-};
+// *******************************************************************
+// USUNIĘTO: QuickPlanSwitcher (sekcja z guzikami FBW/SPLIT)
+// *******************************************************************
 
 
 // GŁÓWNY KOMPONENT TREŚCI
@@ -183,11 +149,8 @@ const PplContent = () => {
                     </p>
                 </div>
 
-                {/* Wstawianie Kompaktowego Przełącznika - Wyrównany do Prawej */}
-                <QuickPlanSwitcher currentPlan={'PPL'} />
-
-                {/* Kontener Dni Treningowych (GRID) */}
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                {/* Kontener Dni Treningowych (GRID) - KLUCZOWE: ID DLA KOTWICY #plan-table */}
+                <div id="plan-table" className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                     {pplPlan.map((plan, index) => (
                         <TrainingDayCard key={index} plan={plan} />
                     ))}

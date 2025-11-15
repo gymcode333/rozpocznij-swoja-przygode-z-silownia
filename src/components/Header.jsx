@@ -101,7 +101,7 @@ const Header = () => {
 
             {/* SEKCJA HERO - Duża, czysta, z animacją */}
             <motion.div 
-                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 **py-12** md:py-24 **lg:py-32** text-center"
+                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 **py-6** md:py-11 **lg:py-12** text-center"
                 initial="hidden"
                 animate="visible"
                 variants={heroVariants}
@@ -109,10 +109,10 @@ const Header = () => {
                 aria-label="Wprowadzenie do poradnika"
             >
                 <div className="flex flex-col items-center">
-                    <p className="text-sm font-semibold text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-2">
+                    <p className="text-xs font-semibold text-primary-600 dark:text-primary-400 uppercase tracking-wider mb-2">
                         Mój kompletny poradnik
                     </p>
-                    <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-heading leading-tight text-gray-900 dark:text-white max-w-4xl">
+                    <h2 className="text-4xl sm:text-5xl lg:text-5xl font-extrabold font-heading leading-tight text-gray-900 dark:text-white max-w-4xl">
                         Rozpocznij ze mną swoją podróż w świecie <span className="text-primary-500">siły i zdrowia!</span>
                     </h2>
                     <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-3xl">

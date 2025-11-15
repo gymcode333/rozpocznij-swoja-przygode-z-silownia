@@ -1,4 +1,4 @@
-// pages/plan-fbw.js - Z Kompaktowym Przełącznikiem Planów Wyrównanym do Prawej i Ulepszoną Sekcją CTA
+// pages/plan-fbw.js - BEZ PRZEŁĄCZNIKÓW DO SPLIT I PPL
 
 import React from 'react';
 
@@ -13,7 +13,7 @@ const MuscleIcon = () => (
     </svg>
 );
 
-// DANE: Plan Treningowy FBW (3 dni) (Bez zmian)
+// DANE: Plan Treningowy FBW (3 dni)
 const fbwPlan = [
     {
         day: 'Trening A',
@@ -53,8 +53,7 @@ const fbwPlan = [
     },
 ];
 
-// ... (ExerciseRow i TrainingDayCard bez zmian)
-
+// Komponent wyświetlający pojedyncze ćwiczenie
 const ExerciseRow = ({ exercise }) => (
     <div className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0">
         <div className="flex-1 min-w-0 pr-4">
@@ -68,9 +67,12 @@ const ExerciseRow = ({ exercise }) => (
     </div>
 );
 
+// Komponent dla pojedynczego Dnia Treningowego
 const TrainingDayCard = ({ plan }) => {
     return (
         <div className="bg-white rounded-xl shadow-2xl overflow-hidden h-full flex flex-col transition duration-300 hover:shadow-indigo-300/50">
+            
+            {/* Nagłówek Dnia */}
             <div className={`p-6 bg-indigo-50 border-b-4 border-indigo-600 flex items-center`}>
                 <MuscleIcon />
                 <div>
@@ -78,48 +80,11 @@ const TrainingDayCard = ({ plan }) => {
                     <p className="text-sm text-gray-600 mt-1">{plan.focus}</p>
                 </div>
             </div>
+
+            {/* Lista Ćwiczeń */}
             <div className="p-6 space-y-2 flex-1">
                 {plan.exercises.map((exercise, index) => (
                     <ExerciseRow key={index} exercise={exercise} />
-                ))}
-            </div>
-        </div>
-    );
-};
-
-
-// KOMPAKTOWY PRZEŁĄCZNIK PLANÓW (ZMODYFIKOWANY: Wymiana tekstu na profesjonalny CTA)
-const QuickPlanSwitcher = ({ currentPlan }) => {
-    const plans = [
-        { name: 'FBW', currentName: 'FBW', href: './FBW', label: 'Przejdź do Planu FBW' },
-        { name: 'SPLIT', currentName: 'SPLIT', href: './SPLIT', label: 'Plan SPLIT' },
-        { name: 'PPL', currentName: 'PPL', href: './PPL', label: 'Plan PPL' },
-    ];
-    
-    // Filtrujemy, zostawiamy tylko inne plany niż obecny
-    const otherPlans = plans.filter(plan => plan.currentName !== currentPlan);
-
-    if (otherPlans.length === 0) return null;
-
-    return (
-        // flex-col na mobilnym, justify-between na desktopowym
-        <div className="w-full bg-white p-4 rounded-xl shadow-lg flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4 mb-12">
-            
-            {/* NOWY, PROFESJONALNY TEKST/CTA */}
-            <p className="text-base text-indigo-700 font-bold flex-grow text-center sm:text-left uppercase tracking-wider">
-                <span className="hidden sm:inline">➡️</span> Zobacz Alternatywne Schematy Treningowe
-            </p>
-
-            {/* Kontener dla przycisków (wyrównanie do prawej na desktopie) */}
-            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
-                {otherPlans.map(plan => (
-                    <a
-                        key={plan.name}
-                        href={plan.href}
-                        className="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-500 hover:bg-indigo-600 transition duration-150"
-                    >
-                        {plan.label}
-                    </a>
                 ))}
             </div>
         </div>
@@ -146,11 +111,10 @@ const FbwContent = () => {
                     </p>
                 </div>
 
-                {/* Wstawianie Kompaktowego Przełącznika - Wyrównany do Prawej */}
-                <QuickPlanSwitcher currentPlan={'FBW'} />
+                {/* Sekcja QuickPlanSwitcher została usunięta */}
 
                 {/* Kontener Dni Treningowych (GRID) */}
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                <div id="plan-table" className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                     {fbwPlan.map((plan, index) => (
                         <TrainingDayCard key={index} plan={plan} />
                     ))}

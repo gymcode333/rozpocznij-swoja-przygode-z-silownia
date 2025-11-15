@@ -116,22 +116,12 @@ const PlansPage = () => {
     ];
 
     return (
-        // Cała strona opakowana w główny kontener
+        
         <div className="min-h-screen flex flex-col"> 
             
             <Header /> {/* ZWRÓCONY HEADER */}
             
-            {/* Sekcja Hero (tylko z nagłówkiem) */}
-            <header className="bg-gray-100 dark:bg-gray-900 py-16 text-center">
-                <h1 className="text-5xl font-extrabold font-heading text-gray-900 dark:text-white mb-4">
-                    Nasze Plany Treningowe
-                </h1>
-                <p className="text-lg text-gray-600 dark:text-gray-400 max-w-4xl mx-auto px-4">
-                    Dobrze zaplanowany trening to podstawa. Wybierz jeden z naszych sprawdzonych schematów, które pomogą Ci zorganizować swoje sesje na siłowni i zmaksymalizować efekty.
-                </p>
-            </header>
-            
-            {/* Główna zawartość strony (Karty Planów) */}
+
             <div className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
                 <main id="main" className="w-full" role="main">
                     
