@@ -140,18 +140,99 @@ const PplContent = () => {
                 </div>
 
                 {/* Wskazówki Treningowe */}
-                <div className="mt-16 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-600">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Schemat i Cykliczność PPL</h3>
-                    <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Rozpoczynaj każdy dzień od dużego ćwiczenia wielostawowego (przysiad, martwy ciąg, wyciskanie), aby wykorzystać maksymalnie siłę i energię.</li>
-    <li>Zachowaj progresję — dodawaj ciężar lub powtórzenia, gdy osiągniesz górną granicę zakresu powtórzeń. Systematyczny wzrost obciążenia jest kluczem do hipertrofii.</li>
-    <li>Trenuj z odpowiednią intensywnością — zostaw 1–2 powtórzenia w zapasie (RIR 1–2) w większości ćwiczeń, aby uniknąć przetrenowania przy częstym powtarzaniu partii mięśniowych.</li>
-    <li>Priorytetyzuj regenerację — PPL pozwala trenować każdą partię dwa razy w tygodniu, więc odpoczynek, sen i odpowiednia dieta są niezbędne dla wzrostu mięśni.</li>
-    <li>Rozkładaj dni mądrze — np. PUSH → PULL → wolne → LEGS → UPPER → wolne, aby te same grupy mięśniowe miały czas na regenerację.</li>
-    <li>Nie pomijaj izolacji — ćwiczenia na biceps, triceps czy tylne aktony barków poprawiają proporcje sylwetki i pomagają w wyrzeźbieniu mięśni.</li>
-    <li>Kontroluj tempo ruchu — wolniejsze opuszczanie ciężaru i płynne podnoszenie zwiększają efektywność ćwiczenia i zmniejszają ryzyko kontuzji.</li>
-                    </ul>
-                </div>
+                {/* NOWA SEKCJA WSKAZÓWEK - DYNAMICZNE BLOKI AKCJI (INDIGO ONLY) */}
+<div className="mt-8">
+    <h3 className="text-3xl font-extrabold text-gray-900 border-b-4 border-indigo-600 pb-3 mb-6">
+        🔥 Kluczowe Zasady Planu PPL
+    </h3>
+
+    {/* Kontener Siatki na Wskazówki */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        {/* --- WSKAZÓWKA 1: Ćwiczenia Wielostawowe --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-teal-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">💪</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Priorytet Wielostawów:</strong> 
+                    Rozpoczynaj każdy dzień od dużego ćwiczenia wielostawowego (przysiad, martwy ciąg, wyciskanie), aby wykorzystać maksymalnie siłę i energię.
+                </p>
+            </div>
+        </div>
+        
+        {/* --- WSKAZÓWKA 2: Progresja --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-teal-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">📈</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Progresja:</strong> 
+                    Zachowaj progresję — dodawaj ciężar lub powtórzenia, gdy osiągniesz górną granicę zakresu powtórzeń. Systematyczny wzrost obciążenia jest kluczem do hipertrofii.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 3: Intensywność --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-teal-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">🔥</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Intensywność:</strong> 
+                    Trenuj z odpowiednią intensywnością — zostaw 1–2 powtórzenia w zapasie (RIR 1–2) w większości ćwiczeń, aby uniknąć przetrenowania przy częstym powtarzaniu partii mięśniowych.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 4: Regeneracja --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-teal-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">😴</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Priorytetyzuj Regenerację:</strong> 
+                    PPL pozwala trenować każdą partię dwa razy w tygodniu, więc odpoczynek, sen i odpowiednia dieta są niezbędne dla wzrostu mięśni.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 5: Rozkład dni --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-teal-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">🗓️</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Rozkładaj Dni Mądrze:</strong> 
+                    Np. PUSH → PULL → wolne → LEGS → UPPER → wolne, aby te same grupy mięśniowe miały czas na regenerację.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 6: Izolacje --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-teal-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">🔬</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Nie Pomijaj Izolacji:</strong> 
+                    Ćwiczenia na biceps, triceps czy tylne aktony barków poprawiają proporcje sylwetki i pomagają w wyrzeźbieniu mięśni.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 7: Kontrola Tempa --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-teal-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">⚙️</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Kontroluj Tempo Ruchu:</strong> 
+                    Wolniejsze opuszczanie ciężaru i płynne podnoszenie zwiększają efektywność ćwiczenia i zmniejszają ryzyko kontuzji.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+{/* KONIEC NOWEJ SEKCJI WSKAZÓWEK */}
+
+
+
+
 
                 {/* CTA - Lead Magnet (ostatnia sekcja przed Footerem) */}
                 <div className="text-center mt-12">

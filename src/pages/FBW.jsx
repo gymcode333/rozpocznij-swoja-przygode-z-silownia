@@ -124,18 +124,95 @@ const FbwContent = () => {
                 </div>
 
                 {/* Wskazówki Treningowe */}
-                <div className="mt-16 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-600">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Ważne Wskazówki do Planu FBW</h3>
-                    <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Częstotliwość: Trenuj 3 razy w tygodniu, np. Poniedziałek, Środa, Piątek, aby każda partia mięśniowa miała odpowiednią stymulację i regenerację.</li>
-    <li>Priorytet ćwiczeń wielostawowych: Zaczynaj trening od dużych ruchów (przysiad, martwy ciąg, wyciskanie), aby wykorzystać maksymalnie siłę i energię.</li>
-    <li>Progresja: Systematycznie zwiększaj ciężar lub liczbę powtórzeń, gdy osiągniesz górny zakres powtórzeń. To klucz do budowy masy mięśniowej i siły.</li>
-    <li>Intensywność: Trenuj ciężko, ale zostaw 1–2 powtórzenia w zapasie (RIR 1–2), aby uniknąć przetrenowania i poprawić technikę.</li>
-    <li>Objętość: Staraj się wykonywać 12–18 serii na największe partie mięśniowe w tygodniu, łącząc ćwiczenia złożone i izolacyjne.</li>
-    <li>Regeneracja: Zachowaj 1–2 dni przerwy między sesjami, dbaj o sen 7–9 godzin i odpowiednią dietę, aby mięśnie mogły rosnąć.</li>
-    <li>Technika i tempo: Kontroluj ruch, zwłaszcza opuszczanie ciężaru. Poprawna forma minimalizuje ryzyko kontuzji i zwiększa efektywność ćwiczeń.</li>
-                    </ul>
-                </div>
+                {/* NOWA SEKCJA WSKAZÓWEK - DYNAMICZNE BLOKI AKCJI */}
+<div className="mt-8">
+    <h3 className="text-3xl font-extrabold text-gray-900 border-b-4 border-indigo-600 pb-3 mb-6">
+        🔥 Twoje Kluczowe Zasady Treningowe
+    </h3>
+
+    {/* Kontener Siatki na Wskazówki */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        {/* --- WSKAZÓWKA 1: Częstotliwość --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">🗓️</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Częstotliwość:</strong> 
+                    Trenuj 3 razy w tygodniu, np. Poniedziałek, Środa, Piątek, aby każda partia mięśniowa miała odpowiednią stymulację i regenerację.
+                </p>
+            </div>
+        </div>
+        
+        {/* --- WSKAZÓWKA 2: Priorytet ćwiczeń wielostawowych --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">💪</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Priorytet ćwiczeń wielostawowych:</strong> 
+                    Zaczynaj trening od dużych ruchów (przysiad, martwy ciąg, wyciskanie), aby wykorzystać maksymalnie siłę i energię.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 3: Progresja --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-red-700 font-bold mr-3">📈</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Progresja:</strong> 
+                    Systematycznie zwiększaj ciężar lub liczbę powtórzeń, gdy osiągniesz górny zakres powtórzeń. To klucz do budowy masy mięśniowej i siły.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 4: Intensywność --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-red-700 font-bold mr-3">⚡</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Intensywność:</strong> 
+                    Trenuj ciężko, ale zostaw 1–2 powtórzenia w zapasie (RIR 1–2), aby uniknąć przetrenowania i poprawić technikę.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 5: Objętość --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">📚</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Objętość:</strong> 
+                    Staraj się wykonywać 12–18 serii na największe partie mięśniowe w tygodniu, łącząc ćwiczenia złożone i izolacyjne.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 6: Regeneracja --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-teal-700 font-bold mr-3">🌙</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Regeneracja:</strong> 
+                    Zachowaj 1–2 dni przerwy między sesjami, dbaj o sen 7–9 godzin i odpowiednią dietę, aby mięśnie mogły rosnąć.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 7: Technika i tempo --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-teal-700 font-bold mr-3">🔬</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Technika i tempo:</strong> 
+                    Kontroluj ruch, zwłaszcza opuszczanie ciężaru. Poprawna forma minimalizuje ryzyko kontuzji i zwiększa efektywność ćwiczeń.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+{/* KONIEC NOWEJ SEKCJI WSKAZÓWEK */}
 
                 {/* CTA - Lead Magnet (ostatnia sekcja przed Footerem) */}
                 <div className="text-center mt-12">

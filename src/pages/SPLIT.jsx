@@ -129,24 +129,103 @@ const SplitContent = () => {
                 </div>
 
                 {/* Wskazówki Treningowe */}
-                <div className="mt-16 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-600">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Ważne Wskazówki do Planu SPLIT</h3>
-                    <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Trenuj każdą partię 1 raz w tygodniu z pełną objętością, koncentrując się na jakości serii, a nie tylko na liczbie powtórzeń.</li>
-                        <li>Zaczynaj każdy dzień od dużego ćwiczenia wielostawowego, które angażuje największą grupę mięśniową (przysiady, martwy ciąg, wyciskanie), aby maksymalnie wykorzystać siłę i energię.</li>
-                        <li>Zachowaj progresję — co tydzień staraj się zwiększać ciężar, liczbę powtórzeń lub poprawić kontrolę ruchu, aby mięśnie stale były stymulowane do wzrostu.</li>
-                        <li>Odpoczywaj odpowiednio między dniami — 48 godzin przerwy między sesjami dla tej samej grupy mięśniowej pozwala na pełną regenerację i wzrost mięśni.</li>
-                        <li>Nie zaniedbuj ćwiczeń izolacyjnych — uzupełniają one główne ruchy, poprawiają proporcje i pomagają w wyrzeźbieniu sylwetki.</li>
-                        <li>Kontroluj tempo ruchu — wolniejsze opuszczanie ciężaru i pełna kontrola podczas podnoszenia zwiększają efektywność ćwiczenia i bezpieczeństwo stawów.</li>
-                        <li>Monitoruj regenerację i zmęczenie — jeśli czujesz przeciążenie lub ból stawów, wprowadź dodatkowy dzień odpoczynku lub zmniejsz objętość akcesoriów.</li>
-                    </ul>
-                </div>
+               {/* NOWA SEKCJA WSKAZÓWEK - DYNAMICZNE BLOKI AKCJI (INDIGO ONLY) */}
+<div className="mt-8">
+    <h3 className="text-3xl font-extrabold text-gray-900 border-b-4 border-indigo-600 pb-3 mb-6">
+        🔥 Kluczowe Zasady Planu SPLIT
+    </h3>
+
+    {/* Kontener Siatki na Wskazówki */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        {/* --- WSKAZÓWKA 1: Częstotliwość i Objętość --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">🎯</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Częstotliwość & Objętość:</strong> 
+                    Trenuj każdą partię 1 raz w tygodniu z pełną objętością, koncentrując się na jakości serii, a nie tylko na liczbie powtórzeń.
+                </p>
+            </div>
+        </div>
+        
+        {/* --- WSKAZÓWKA 2: Ćwiczenia Wielostawowe --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">💪</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Priorytet Wielostawów:</strong> 
+                    Zaczynaj każdy dzień od dużego ćwiczenia wielostawowego, które angażuje największą grupę mięśniową (przysiady, martwy ciąg, wyciskanie), aby maksymalnie wykorzystać siłę i energię.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 3: Progresja --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">📈</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Progresja:</strong> 
+                    Zachowaj progresję — co tydzień staraj się zwiększać ciężar, liczbę powtórzeń lub poprawić kontrolę ruchu, aby mięśnie stale były stymulowane do wzrostu.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 4: Regeneracja i Przerwy --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">😴</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Odpoczynek:</strong> 
+                    Odpoczywaj odpowiednio między dniami — 48 godzin przerwy między sesjami dla tej samej grupy mięśniowej pozwala na pełną regenerację i wzrost mięśni.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 5: Ćwiczenia Izolacyjne --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">🔬</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Ćwiczenia Izolacyjne:</strong> 
+                    Nie zaniedbuj ćwiczeń izolacyjnych — uzupełniają one główne ruchy, poprawiają proporcje i pomagają w wyrzeźbieniu sylwetki.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 6: Technika i tempo --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">⚙️</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Technika i Tempo:</strong> 
+                    Kontroluj tempo ruchu — wolniejsze opuszczanie ciężaru i pełna kontrola podczas podnoszenia zwiększają efektywność ćwiczenia i bezpieczeństwo stawów.
+                </p>
+            </div>
+        </div>
+
+        {/* --- WSKAZÓWKA 7: Monitorowanie --- */}
+        <div className="bg-white p-5 rounded-xl border-2 border-indigo-200 shadow-md hover:shadow-lg transition duration-300">
+            <div className="flex items-start">
+                <span className="text-xl text-indigo-700 font-bold mr-3">🚨</span>
+                <p className="flex-1">
+                    <strong className="text-indigo-700 block text-lg mb-1">Monitorowanie:</strong> 
+                    Monitoruj regenerację i zmęczenie — jeśli czujesz przeciążenie lub ból stawów, wprowadź dodatkowy dzień odpoczynku lub zmniejsz objętość akcesoriów.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+{/* KONIEC NOWEJ SEKCJI WSKAZÓWEK */}
+
+
+
+
 
                 {/* CTA - Lead Magnet (ostatnia sekcja przed Footerem) */}
                 <div className="text-center mt-12">
-                    <p className="text-xl text-gray-800 font-semibold mb-4">
-                        Stwórz swój spersonalizowany plan SPLIT!
-                    </p>
+                    
                     <a
                         href="/pobierz-ebook-split"
                         className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg shadow-xl text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105"
