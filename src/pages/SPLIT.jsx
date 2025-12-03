@@ -19,44 +19,46 @@ const splitPlan = [
         day: 'Dzień 1: Klatka Piersiowa & Triceps',
         focus: 'Siłowe ćwiczenia złożone na klatkę, akcesoria na triceps.',
         exercises: [
-            { name: 'Wyciskanie sztangi na ławce płaskiej', sets: '4', reps: '6-8', notes: 'Główne ćwiczenie siłowe. Progresja ciężaru.' },
-            { name: 'Wyciskanie hantli skos w górę (30°)', sets: '3', reps: '8-10', notes: 'Akcent na górną część klatki.' },
-            { name: 'Rozpiętki z linkami wyciągu górnego', sets: '3', reps: '12-15', notes: 'Maksymalne rozciągnięcie i spięcie.' },
-            { name: 'Wyciskanie francuskie sztangi leżąc', sets: '3', reps: '8-10', notes: 'Ćwiczenie na masę tricepsa.' },
-            { name: 'Prostowanie ramion na wyciągu (linki)', sets: '3', reps: '12-15', notes: 'Izolacja i dopompowanie tricepsa.' },
+            { name: 'Wyciskanie sztangi na ławce płaskiej', sets: '4', reps: '4-6', notes: 'Główne ćwiczenie siłowe na klatke piersiową.' },
+            { name: 'Wyciskanie hantli na ławce dodatniej', sets: '3', reps: '6-8', notes: 'Akcent na górną część klatki.' },
+            { name: 'Rozpiętki na maszynie', sets: '3', reps: '12-15', notes: 'Głównie mięsień piersiowy większy.' },
+            { name: 'Dipy', sets: '3', reps: '8-10', notes: 'Ćwiczenie na dół klatki piersiowej.' },
+            { name: 'Wyciskanie francuskie', sets: '3', reps: '8-10', notes: 'Wielkość tricepsa.' },
+            { name: 'Prostowanie ramion na wyciągu', sets: '3', reps: '10-12', notes: 'Izolacja i dopompowanie tricepsa.' },
         ],
     },
     {
         day: 'Dzień 2: Plecy & Biceps',
         focus: 'Ćwiczenia na szerokość i grubość pleców, mocne ramiona.',
         exercises: [
-            { name: 'Martwy Ciąg (klasyczny/sumo)', sets: '4', reps: '5-7', notes: 'Fundamentalne dla budowania siły i gęstości pleców.' },
-            { name: 'Podciąganie na drążku (nachwyt szeroki)', sets: '4', reps: 'Max', notes: 'Skup się na szerokości. Można użyć gumy.' },
-            { name: 'Wiosłowanie sztangą w opadzie tułowia', sets: '3', reps: '8-10', notes: 'Dla grubości pleców. Kontrolowany ruch.' },
-            { name: 'Uginanie ramion ze sztangą łamaną', sets: '3', reps: '8-10', notes: 'Główne ćwiczenie na biceps. Pełny zakres.' },
-            { name: 'Uginanie młotkowe hantlami', sets: '3', reps: '10-12', notes: 'Akcent na przedramiona i długą głowę bicepsa.' },
+            { name: 'Podciąganie nachwytem', sets: '4', reps: '6-8', notes: 'Fundamentalne dla szerokości pleców.' },
+            { name: 'Wisołowanie hantlami', sets: '4', reps: '8-10', notes: 'Główne ćwiczenie na grubość pleców.' },
+            { name: 'Ściąganie drążka (neutral grip)', sets: '3', reps: '8-10', notes: 'Szerokość pleców, czucie mięśniowe.' },
+            { name: 'Uginanie ramion ze sztangą', sets: '3', reps: '8-10', notes: 'Główne ćwiczenie na biceps. Pełny zakres.' },
+            { name: 'Uginanie hantli z suplinacją', sets: '3', reps: '10-12', notes: 'Siła bicepsa i praca przedramienia.' },
         ],
     },
     {
         day: 'Dzień 3: Barki & Brzuch',
         focus: 'Kompleksowe kształtowanie barków i stabilny korpus.',
         exercises: [
-            { name: 'Wyciskanie żołnierskie (sztanga/hantle)', sets: '4', reps: '8-10', notes: 'Ćwiczenie na masę barków. Stabilny tułów.' },
-            { name: 'Unoszenie hantli bokiem (stojąc)', sets: '3', reps: '12-15', notes: 'Izolacja bocznego aktonu. Prowadź łokcie.' },
-            { name: 'Odwrotne rozpiętki (maszyna/hantle)', sets: '3', reps: '15-20', notes: 'Na tylny akton barków. Dla zdrowych stawów.' },
-            { name: 'Unoszenie nóg w zwisie na drążku', sets: '3', reps: '15-20', notes: 'Mocne spięcie brzucha, nie bujaj ciałem.' },
-            { name: 'Allahy/Spięcia na wyciągu', sets: '3', reps: '15-20', notes: 'Izolacja prostych mięśni brzucha.' },
+            { name: 'Wyciskanie hantli siedząc', sets: '4', reps: '6-8', notes: 'Ćwiczenie na siłe i wielkość barków' },
+            { name: 'Unoszenie hantli bokiem ', sets: '4', reps: '10-12', notes: 'Szerokość barków.' },
+            { name: 'Odwrotne rozpiętki', sets: '3', reps: '12-15', notes: 'Na tylny akton barków, okrągłe barki.' },
+            { name: 'Face pull', sets: '3', reps: '12-15', notes: 'Tył barków, góra placów, wyprost sylwetki.' },
+            { name: 'Allahy/Ab-wheel Rollout', sets: '3', reps: 'Max', notes: 'Mocna praca brzucha.' },
         ],
     },
     {
         day: 'Dzień 4: Nogi',
         focus: 'Mocny trening ud, pośladków i łydek.',
         exercises: [
-            { name: 'Przysiad ze sztangą (High Bar/Low Bar)', sets: '4', reps: '6-8', notes: 'Król ćwiczeń. Pilnuj techniki, głębokość ATG.' },
-            { name: 'Wypychanie na suwnicy (Leg Press)', sets: '3', reps: '10-12', notes: 'Wysoka objętość, dla siły i hipertrofii.' },
-            { name: 'Uginanie nóg na maszynie leżąc', sets: '3', reps: '12-15', notes: 'Izolacja dwugłowych uda. Wolne opuszczanie.' },
-            { name: 'Wykroki z hantlami/sztangą', sets: '3', reps: '10-12 na nogę', notes: 'Wyzwanie dla równowagi i pośladków.' },
-            { name: 'Wspięcia na palce stojąc', sets: '4', reps: '15-20', notes: 'Maksymalne rozciągnięcie i spięcie łydki.' },
+            { name: 'Przysiad ze sztangą ', sets: '4', reps: '4-6', notes: 'Siła i wielkośc nóg.' },
+            { name: 'Wypychanie na suwnicy', sets: '3', reps: '8-10', notes: 'Wysoka objętość, siła i hipertrofia.' },
+            { name: 'Prostowanie nóg na maszynie', sets: '3', reps: '12-15', notes: 'Izolacja czworogłowych uda.' },
+            { name: 'Rumuński martwy ciąg', sets: '3', reps: '8-10', notes: 'Ćwiczenie złożone na dwugłowy uda' },
+            { name: 'Uginanie nóg leżąc', sets: '3', reps: '10-12', notes: 'Izolacja dwugłowego uda.' },
+            { name: 'Wspięcia na palce', sets: '3', reps: '10-12', notes: 'Praca łydki, mocne rozciągnięcie.' },
         ],
     },
 ];
@@ -130,9 +132,13 @@ const SplitContent = () => {
                 <div className="mt-16 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-600">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Ważne Wskazówki do Planu SPLIT</h3>
                     <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li>**Regeneracja:** Pamiętaj o dniu przerwy pomiędzy treningami, np. Poniedziałek, Wtorek, Środa (Wolne), Czwartek, Piątek.</li>
-                        <li>**Objętość:** Na każdą dużą partię mięśniową wykonujesz 8-12 serii efektywnych w tygodniu.</li>
-                        <li>**Odżywianie:** Trening Split wymaga odpowiednio zbilansowanej diety, szczególnie jeśli celujesz w masę mięśniową.</li>
+                        <li>Trenuj każdą partię 1 raz w tygodniu z pełną objętością, koncentrując się na jakości serii, a nie tylko na liczbie powtórzeń.</li>
+                        <li>Zaczynaj każdy dzień od dużego ćwiczenia wielostawowego, które angażuje największą grupę mięśniową (przysiady, martwy ciąg, wyciskanie), aby maksymalnie wykorzystać siłę i energię.</li>
+                        <li>Zachowaj progresję — co tydzień staraj się zwiększać ciężar, liczbę powtórzeń lub poprawić kontrolę ruchu, aby mięśnie stale były stymulowane do wzrostu.</li>
+                        <li>Odpoczywaj odpowiednio między dniami — 48 godzin przerwy między sesjami dla tej samej grupy mięśniowej pozwala na pełną regenerację i wzrost mięśni.</li>
+                        <li>Nie zaniedbuj ćwiczeń izolacyjnych — uzupełniają one główne ruchy, poprawiają proporcje i pomagają w wyrzeźbieniu sylwetki.</li>
+                        <li>Kontroluj tempo ruchu — wolniejsze opuszczanie ciężaru i pełna kontrola podczas podnoszenia zwiększają efektywność ćwiczenia i bezpieczeństwo stawów.</li>
+                        <li>Monitoruj regenerację i zmęczenie — jeśli czujesz przeciążenie lub ból stawów, wprowadź dodatkowy dzień odpoczynku lub zmniejsz objętość akcesoriów.</li>
                     </ul>
                 </div>
 

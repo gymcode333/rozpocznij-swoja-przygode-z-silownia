@@ -19,36 +19,39 @@ const fbwPlan = [
         day: 'Trening A',
         focus: 'Akcent na ćwiczenia złożone (siła)',
         exercises: [
-            { name: 'Przysiad ze sztangą', sets: '4', reps: '8-10', notes: 'Główny ruch na nogi. Pełne zejście.' },
-            { name: 'Wyciskanie sztangi na ławce płaskiej', sets: '4', reps: '8-10', notes: 'Główny ruch na klatkę. Kontrola.' },
-            { name: 'Wiosłowanie sztangą/hantlami', sets: '4', reps: '8-10', notes: 'Główny ruch na plecy. Mocne spięcie.' },
-            { name: 'Wyciskanie żołnierskie (barki)', sets: '3', reps: '10-12', notes: 'Ćwiczenie na barki. Stabilny tułów.' },
-            { name: 'Uginanie ramion ze sztangą (biceps)', sets: '2', reps: '10-12', notes: 'Izolacja bicepsa.' },
-            { name: 'Prostowanie ramion na wyciągu (triceps)', sets: '2', reps: '10-12', notes: 'Izolacja tricepsa.' },
+            { name: 'Wyciskanie sztangi na ławce płaskiej', sets: '4', reps: '4-6', notes: 'Główny ruch na klatkę w pełni rozwijające ją.' },
+            { name: 'Przysiad', sets: '4', reps: '4-6', notes: 'Główne ćwiczenie rozwijające nogi.' },
+            { name: 'Przyciąganie drążka V-bar', sets: '4', reps: '8-10', notes: 'Impuls dla środkowych pleców' },
+            { name: 'Rozpiętki na maszynie/hantle', sets: '3', reps: '10-12', notes: 'Głównie mięsień piersiowy większy.' },
+            { name: 'Face Pull', sets: '3', reps: '12-15', notes: 'Tył barków, góra pleców, wyprostowanie sylwetki.' },
+            { name: 'Wyprosty nóg na maszynie', sets: '3', reps: '10-12', notes: 'Izolacja czworogłowego uda.' },
+            { name: 'Biceps hantlem z suplinacją', sets: '4', reps: '8-10', notes: 'Wzmacnainie bicepsu oraz przedramienia.' },
         ],
     },
     {
         day: 'Trening B',
         focus: 'Akcent na objętość (hipertrofia)',
         exercises: [
-            { name: 'Martwy Ciąg (Rumuński)', sets: '4', reps: '8-10', notes: 'Akcent na dwugłowe uda i pośladki.' },
-            { name: 'Wyciskanie hantli skos w górę', sets: '4', reps: '10-12', notes: 'Akcent na górną klatkę.' },
-            { name: 'Ściąganie drążka szerokim chwytem', sets: '4', reps: '10-12', notes: 'Akcent na szerokość pleców.' },
-            { name: 'Unoszenie hantli bokiem (barki)', sets: '3', reps: '12-15', notes: 'Izolacja bocznego aktonu.' },
-            { name: 'Uginanie młotkowe (hantle)', sets: '2', reps: '10-12', notes: 'Akcent na przedramiona.' },
-            { name: 'Pompki na poręczach (Dipsy)', sets: '2', reps: '10-12', notes: 'Akcent na triceps i dolną klatkę.' },
+            { name: 'Martwy ciąg klasyczny', sets: '3', reps: '4-5', notes: 'Podstawowe ćwiczenie wzmacniające całe ciało.' },
+            { name: 'Ściąganie drążka szerokim chwytem', sets: '4', reps: '8-10', notes: 'Ćwiczenie na szerokość pleców .' },
+            { name: 'Wyciskanie hantli siedząc', sets: '4', reps: '6-8', notes: 'Główne ćwiczenie na budowe wielkości barków.' },
+            { name: 'Odwrotne rozpiętki', sets: '3', reps: '12-15', notes: 'Tylna część barków, bardzo ważna, często pomijana.' },
+            { name: 'Wyciskanie francuskie', sets: '3', reps: '8-10', notes: 'Rozwój tricepsa, konieczne przed izolacją.' },
+            { name: 'Prostowanie ramion na wyciągu', sets: '3', reps: '10-12', notes: 'Izolacja, uzupełnienie tricepsa.' },
+            { name: 'Spięcia łydek na maszynie', sets: '3', reps: '10-12', notes: 'Izolacja łydek, mocne rozciągnięcie.' },
         ],
     },
     {
         day: 'Trening C',
         focus: 'Trening mieszany (siła i objętość)',
         exercises: [
-            { name: 'Wypychanie na suwnicy (Leg Press)', sets: '3', reps: '12-15', notes: 'Wysoka objętość na nogi.' },
-            { name: 'Pompki na poręczach (Dipsy/Dumbbell Press)', sets: '4', reps: '8-10', notes: 'Alternatywny ruch na klatkę.' },
-            { name: 'Podciąganie (chwyt neutralny)', sets: '4', reps: 'Max', notes: 'Dla grubości pleców.' },
-            { name: 'Face Pulls (tylny akton barków)', sets: '3', reps: '15-20', notes: 'Dla zdrowia stawów i postawy.' },
-            { name: 'Modlitewnik (biceps)', sets: '2', reps: '10-12', notes: 'Maksymalna izolacja bicepsa.' },
-            { name: 'Wyciskanie francuskie (triceps)', sets: '2', reps: '10-12', notes: 'Ćwiczenie na masę tricepsa.' },
+            { name: 'Podciąganie', sets: '4', reps: 'Max', notes: 'Obowiązkowe ćwiczenie na szerokość pleców.' },
+            { name: 'Wiosłowanie na maszynie', sets: '3', reps: '8-10', notes: 'Grubość pleców.' },
+            { name: 'Wyciskanie hantli na skosie dodatnim', sets: '4', reps: '6-8', notes: 'Góra klatki piersiowej.' },
+            { name: 'Dipy', sets: '3', reps: '6-8', notes: 'Dół klatki piersiowej.' },
+            { name: 'Suwnica na nogi', sets: '4', reps: '8-10', notes: 'Siła i izolowanie nóg.' },
+            { name: 'Wznosy bokiem', sets: '4', reps: '10-12', notes: 'Główne ćwiczenie na szerokie barki.' },
+            { name: 'Biceps na wyciągu/sztanga', sets: '4', reps: '8-10', notes: 'Główne ćwiczenie na duży biceps.' },
         ],
     },
 ];
@@ -124,9 +127,13 @@ const FbwContent = () => {
                 <div className="mt-16 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-600">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Ważne Wskazówki do Planu FBW</h3>
                     <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li>**Częstotliwość:** Trenuj 3 razy w tygodniu (np. Poniedziałek, Środa, Piątek). Dni wolne są kluczowe.</li>
-                        <li>**Zasada:** Pomiędzy treningami musi być minimum jeden dzień wolnego na pełną regenerację.</li>
-                        <li>**Obciążenie:** Skup się na ciężarze, który pozwala Ci wykonać wszystkie powtórzenia z idealną techniką.</li>
+                        <li>Częstotliwość: Trenuj 3 razy w tygodniu, np. Poniedziałek, Środa, Piątek, aby każda partia mięśniowa miała odpowiednią stymulację i regenerację.</li>
+    <li>Priorytet ćwiczeń wielostawowych: Zaczynaj trening od dużych ruchów (przysiad, martwy ciąg, wyciskanie), aby wykorzystać maksymalnie siłę i energię.</li>
+    <li>Progresja: Systematycznie zwiększaj ciężar lub liczbę powtórzeń, gdy osiągniesz górny zakres powtórzeń. To klucz do budowy masy mięśniowej i siły.</li>
+    <li>Intensywność: Trenuj ciężko, ale zostaw 1–2 powtórzenia w zapasie (RIR 1–2), aby uniknąć przetrenowania i poprawić technikę.</li>
+    <li>Objętość: Staraj się wykonywać 12–18 serii na największe partie mięśniowe w tygodniu, łącząc ćwiczenia złożone i izolacyjne.</li>
+    <li>Regeneracja: Zachowaj 1–2 dni przerwy między sesjami, dbaj o sen 7–9 godzin i odpowiednią dietę, aby mięśnie mogły rosnąć.</li>
+    <li>Technika i tempo: Kontroluj ruch, zwłaszcza opuszczanie ciężaru. Poprawna forma minimalizuje ryzyko kontuzji i zwiększa efektywność ćwiczeń.</li>
                     </ul>
                 </div>
 

@@ -88,9 +88,9 @@ const PlansPage = () => {
             ],
         },
         {
-            title: "PPL (Push, Pull, Legs)",
+            title: "PPL (Push, Pull, Legs, Upper)",
             tag: "Dla średnio zaawansowanych",
-            link: "/plany/PPL", // Zmieniono na nową konwencję
+            link: "/plany/PPL", 
             icon: Users,
             description: "Plan dzielony na trzy główne grupy ruchów. Świetny do zwiększenia częstotliwości treningowej i lepszego podziału pracy mięśniowej.",
             features: [

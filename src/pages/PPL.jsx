@@ -19,71 +19,56 @@ const pplPlan = [
         day: 'Dzień 1: PUSH (Pchanie)',
         focus: 'Klatka, Barki, Triceps',
         exercises: [
-            { name: 'Wyciskanie na ławce (sztanga)', sets: '4', reps: '6-8', notes: 'Główny ruch na klatkę.' },
-            { name: 'Wyciskanie hantli skos (góra)', sets: '3', reps: '8-10', notes: 'Akcent na górną część klatki.' },
-            { name: 'Wyciskanie żołnierskie (barki)', sets: '3', reps: '8-10', notes: 'Na masę i siłę barków.' },
-            { name: 'Unoszenie hantli bokiem', sets: '3', reps: '12-15', notes: 'Izolacja bocznego aktonu barków.' },
-            { name: 'Wyciskanie francuskie (triceps)', sets: '3', reps: '10-12', notes: 'Ćwiczenie na masę tricepsa.' },
-            { name: 'Prostowanie ramion na wyciągu', sets: '2', reps: '15-20', notes: 'Dopompowanie tricepsa.' },
+           
+            { name: 'Wyciskanie sztangi na ławce płaskiej', sets: '4', reps: '4-6', notes: 'Główny ruch na klatkę w pełni rozwijające ją.' },
+            { name: 'Wyciskanie hantli na skosie dodatnim', sets: '3', reps: '6-8', notes: 'Góra klatki piersiowej.' },
+            { name: 'Rozpiętki na maszynie', sets: '3', reps: '10-12', notes: 'Głównie mięsień piersiowy większy.' },
+            { name: 'Wyciskanie hantli siedząc', sets: '3', reps: '6-8', notes: 'Główne ćwiczenie na budowe wielkości barków.' },
+            { name: 'Wznosy hantli bokiem', sets: '4', reps: '10-12', notes: 'Szerokość barków.' },
+            { name: 'Wyciskanie francuskie', sets: '2', reps: '8-10', notes: 'Wielkość tricepsa.' },
+            { name: 'Prostowanie ramion na wyciągu', sets: '3', reps: '12-15', notes: 'Izolacja tricepsa.' },
+            
         ],
     },
     {
         day: 'Dzień 2: PULL (Ciągnięcie)',
         focus: 'Plecy, Biceps, Tylny Akton Barków',
         exercises: [
-            { name: 'Martwy Ciąg', sets: '3', reps: '5-7', notes: 'Ruch podstawowy, budowanie siły.' },
-            { name: 'Podciąganie / Ściąganie drążka', sets: '4', reps: '6-10', notes: 'Na szerokość pleców.' },
-            { name: 'Wiosłowanie hantlami/sztangą', sets: '3', reps: '8-10', notes: 'Na grubość i gęstość pleców.' },
-            { name: 'Uginanie ramion ze sztangą', sets: '3', reps: '8-10', notes: 'Główne ćwiczenie na biceps.' },
-            { name: 'Face Pulls (przyciąganie liny)', sets: '3', reps: '15-20', notes: 'Na tylny akton barków i zdrowie stawów.' },
-            { name: 'Uginanie nadgarstków', sets: '2', reps: '20+', notes: 'Wzmocnienie przedramion.' },
+            { name: 'Podciąganie nachwytem', sets: '4', reps: '6-8', notes: 'Obowiązkowe ćwczenie na szerokość pleców.' },
+            { name: 'Wiosłowanie sztangą / hantlą', sets: '4', reps: '8-10', notes: 'Na grubość pleców.' },
+            { name: 'Ściąganie drążka neutral grip', sets: '3', reps: '8-10', notes: 'Szerokość pleców uzupełnienie.' },
+            { name: 'Face pull', sets: '3', reps: '12-15', notes: 'Tył barków, góra pleców, poprawa sylwetki.' },
+            { name: 'Uginanie sztangi stojąc', sets: '3', reps: '8-10', notes: 'Masa bicepsa.' },
+            { name: 'Uginanie młotkowe', sets: '3', reps: '10-12', notes: 'Grubość bicepsa oraz przedramie.' },
         ],
     },
     {
         day: 'Dzień 3: LEGS (Nogi)',
         focus: 'Uda, Pośladki, Łydki, Core',
         exercises: [
-            { name: 'Przysiady ze sztangą', sets: '4', reps: '6-8', notes: 'Fundamentalne dla budowy nóg.' },
-            { name: 'Wypychanie na suwnicy (Leg Press)', sets: '3', reps: '10-12', notes: 'Dla wysokiej objętości i hipertrofii.' },
-            { name: 'Wykroki z hantlami/sztangą', sets: '3', reps: '10-12 na nogę', notes: 'Akcent na pośladki i stabilność.' },
-            { name: 'Uginanie nóg leżąc/siedząc', sets: '3', reps: '12-15', notes: 'Izolacja dwugłowych uda.' },
-            { name: 'Wspięcia na palce stojąc', sets: '4', reps: '15-20', notes: 'Na łydki. Pełne rozciągnięcie.' },
-            { name: 'Plank/Unoszenie nóg w zwisie', sets: '3', reps: '60s/15', notes: 'Ćwiczenia na stabilny korpus.' },
+            { name: 'Przysiady ze sztangą', sets: '4', reps: '4-6', notes: 'Fundamentalne dla budowy nóg.' },
+            { name: 'Wypychanie na suwnicy', sets: '3', reps: '8-10', notes: 'Lekko - Dla wysokiej objętości i hipertrofii.' },
+            { name: 'Prostowanie nóg na maszynie', sets: '3', reps: '10-12', notes: 'Izolacja czworogłowego uda.' },
+            { name: 'Rumuński martwy ciąg (RDL)', sets: '3', reps: '6-8', notes: 'Wielostawowe ćwiczenie na dwugłowy uda.' },
+            { name: 'Uginanie nóg leżąc', sets: '3', reps: '10-12', notes: 'Izolacja dwugłowego uda.' },
+            { name: 'Wspięcia na palce', sets: '3', reps: '10-12', notes: 'Ćwiczenia na łydki.' },
         ],
     },
     {
-        day: 'Dzień 4: PUSH (Pchanie II)',
+        day: 'Dzień 4: UPPER',
         focus: 'Objętościowy trening na hipertrofię',
         exercises: [
-            { name: 'Pompki na poręczach (Dipsy)', sets: '3', reps: '8-10', notes: 'Alternatywa dla wyciskania, akcent na dolną klatkę.' },
-            { name: 'Wyciskanie hantli siedząc (barki)', sets: '3', reps: '10-12', notes: 'Kontrolowany ruch, dla lepszej koncentracji.' },
-            { name: 'Rozpiętki na maszynie Pec Deck', sets: '3', reps: '12-15', notes: 'Maksymalne dopompowanie klatki.' },
-            { name: 'Unoszenie hantli w opadzie tułowia', sets: '3', reps: '15-20', notes: 'Na tylne aktony. Wyższa objętość.' },
-            { name: 'Prostowanie ramion linkami (overhand)', sets: '3', reps: '12-15', notes: 'Izolacja bocznej głowy tricepsa.'},
+            { name: 'Wyciskanie hantli na płaskiej', sets: '4', reps: '8-10', notes: 'Siła i wygląd ogólny klatki piersiowej.' },
+            { name: 'Wiosłowanie na maszynie', sets: '4', reps: '8-10', notes: 'Grubość pleców.' },
+            { name: 'Odwrotne rozpiętki', sets: '3', reps: '12-15', notes: 'Rozbudowa tylnej części barków - bardzo ważne.' },
+            { name: 'Podciąganie podchwytem', sets: '3', reps: '6-8', notes: 'Szerokośc pleców z zaanagażowaniem bicepsa.' },
+            { name: 'Rozpiętki skos dodatni', sets: '3', reps: '12-15', notes: 'Izolacja górnej części klatki piersiowej.'},
+            { name: 'Biceps na wyciągu', sets: '2', reps: '10-12', notes: 'Izolacja bicepsa.'},
+            { name: 'Triceps na wyciągu', sets: '2', reps: '10-12', notes: 'Izolacja tricepsa.'},
+           
         ],
     },
-    {
-        day: 'Dzień 5: PULL (Ciągnięcie II)',
-        focus: 'Wysoka objętość, akcent na szerokość pleców',
-        exercises: [
-            { name: 'Wiosłowanie T-Bar/w podporze', sets: '3', reps: '8-10', notes: 'Dla grubości pleców.' },
-            { name: 'Ściąganie drążka (chwyt neutralny)', sets: '4', reps: '10-12', notes: 'Na szerokość, mocne spięcie na dole.' },
-            { name: 'Szrugsy ze sztangą/hantlami', sets: '3', reps: '15-20', notes: 'Na mięśnie kapturowe (trapezy).' },
-            { name: 'Uginanie młotkowe (hantle)', sets: '3', reps: '10-12', notes: 'Budowanie szczytu bicepsa i przedramienia.' },
-            { name: 'Uginanie na modlitewniku', sets: '3', reps: '10-12', notes: 'Maksymalna izolacja bicepsa.' },
-        ],
-    },
-    {
-        day: 'Dzień 6: LEGS (Nogi II)',
-        focus: 'Akcent na tylną taśmę i pośladki',
-        exercises: [
-            { name: 'Martwy Ciąg Rumuński', sets: '4', reps: '8-10', notes: 'Idealne dla pośladków i dwugłowych. Duże rozciągnięcie.' },
-            { name: 'Hack Przysiady/Prostowanie nóg', sets: '3', reps: '10-15', notes: 'Izolacja mięśni czworogłowych.' },
-            { name: 'Hip Thrusts (unoszenie bioder)', sets: '3', reps: '10-12', notes: 'Najlepsze ćwiczenie na siłę pośladków.' },
-            { name: 'Odwodzenie nóg na maszynie/linkach', sets: '3', reps: '15-20', notes: 'Kształtowanie pośladków (boczna część).' },
-            { name: 'Wspięcia na palce siedząc', sets: '3', reps: '20+', notes: 'Na mniejszy mięsień płaszczkowaty.' },
-        ],
-    },
+    
 ];
 
 // Komponent wyświetlający pojedyncze ćwiczenie
@@ -125,9 +110,7 @@ const TrainingDayCard = ({ plan }) => {
 };
 
 
-// *******************************************************************
-// USUNIĘTO: QuickPlanSwitcher (sekcja z guzikami FBW/SPLIT)
-// *******************************************************************
+
 
 
 // GŁÓWNY KOMPONENT TREŚCI
@@ -160,9 +143,13 @@ const PplContent = () => {
                 <div className="mt-16 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-600">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Schemat i Cykliczność PPL</h3>
                     <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li>**Zalecany Schemat:** PUSH (1), PULL (2), LEGS (3), WOLNE, PUSH (4), PULL (5), LEGS (6), WOLNE.</li>
-                        <li>**Cel:** Trenowanie partii dwa razy w tygodniu z zachowaniem pełnej regeneracji.</li>
-                        <li>**Intensywność:** Skup się na ciężarze w pierwszych ćwiczeniach (3-4 serie) i na objętości w ćwiczeniach akcesoryjnych (izolacyjnych).</li>
+                        <li>Rozpoczynaj każdy dzień od dużego ćwiczenia wielostawowego (przysiad, martwy ciąg, wyciskanie), aby wykorzystać maksymalnie siłę i energię.</li>
+    <li>Zachowaj progresję — dodawaj ciężar lub powtórzenia, gdy osiągniesz górną granicę zakresu powtórzeń. Systematyczny wzrost obciążenia jest kluczem do hipertrofii.</li>
+    <li>Trenuj z odpowiednią intensywnością — zostaw 1–2 powtórzenia w zapasie (RIR 1–2) w większości ćwiczeń, aby uniknąć przetrenowania przy częstym powtarzaniu partii mięśniowych.</li>
+    <li>Priorytetyzuj regenerację — PPL pozwala trenować każdą partię dwa razy w tygodniu, więc odpoczynek, sen i odpowiednia dieta są niezbędne dla wzrostu mięśni.</li>
+    <li>Rozkładaj dni mądrze — np. PUSH → PULL → wolne → LEGS → UPPER → wolne, aby te same grupy mięśniowe miały czas na regenerację.</li>
+    <li>Nie pomijaj izolacji — ćwiczenia na biceps, triceps czy tylne aktony barków poprawiają proporcje sylwetki i pomagają w wyrzeźbieniu mięśni.</li>
+    <li>Kontroluj tempo ruchu — wolniejsze opuszczanie ciężaru i płynne podnoszenie zwiększają efektywność ćwiczenia i zmniejszają ryzyko kontuzji.</li>
                     </ul>
                 </div>
 
